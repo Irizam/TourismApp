@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class LoginScript : MonoBehaviour
 {
     public Button loginButton, registerButton;
     public InputField emailInput, passwordInput;
-    public Text loginMessage;
+    public Text loginMessage, errorEmailMessage, errorPasswordMessage;
     private IEnumerator showToastCoroutine;
     // Start is called before the first frame update
     void Start()
@@ -37,8 +38,32 @@ public class LoginScript : MonoBehaviour
 
     void LoginButtonOnClick()
     {
+        errorEmailMessage.text = "";
+        errorPasswordMessage.text = "";
+        String expresion;
+        expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+        bool flag = true;
         string email = emailInput.text, password = passwordInput.text;
-        StartCoroutine(Login(email, password));
+        if (email=="")
+        {
+            errorEmailMessage.text = "El correo es requerido";
+            flag = false;
+        }
+        if (!Regex.IsMatch(email,expresion))
+        {
+            errorEmailMessage.text = "Ingrese un correo valido";
+            flag = false;
+        }
+        if (password=="")
+        {
+            errorPasswordMessage.text = "La contraseña es requerida";
+            flag = false;
+        }
+        if (flag)
+        {
+            StartCoroutine(Login(email, password));
+        }
+        
     }
 
     void RegisterButtonOnClick()
