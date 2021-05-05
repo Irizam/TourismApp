@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/Scenes/RegisterScreen.unity
+=======
 - path: Assets/Scenes/LoginScreen.unity
+>>>>>>> ed235b819bee283a1e464389b61c4aad1b90b6a7
   isLoaded: 1
   isActive: 1
   isSubScene: 0
