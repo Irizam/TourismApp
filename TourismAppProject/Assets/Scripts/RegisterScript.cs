@@ -45,11 +45,12 @@ public class RegisterScript : MonoBehaviour
 
     void LoginButtonOnClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     void RegisterButtonOnClick()
     {
+        bool errorFlag = false;
         emailError.text="";
         passwordError.text="";
         repeatpasswordError.text="";
@@ -68,9 +69,11 @@ public class RegisterScript : MonoBehaviour
                 }
                 catch (System.Exception)
                 {
+                    errorFlag = true;
                     emailError.text = "Formato incorrecto.";
                 }
             }else{
+                errorFlag = true;
                 emailError.text = "El correo requerido.";
             }
 
@@ -78,9 +81,11 @@ public class RegisterScript : MonoBehaviour
             {
                 if (passwordInput.text.Length < 8)
                 {
+                    errorFlag = true;
                     passwordError.text="Mínimo 8 caracteres";
                 }
             }else{
+                errorFlag = true;
                 passwordError.text="Contraseña requerida.";
             }
 
@@ -88,9 +93,11 @@ public class RegisterScript : MonoBehaviour
             {
                 if (repeatPasswordInput.text != passwordInput.text)
                 {
+                    errorFlag = true;
                     repeatpasswordError.text="Repita la contraseña.";
                 }
             }else{
+                errorFlag = true;
                 repeatpasswordError.text="Repita la contraseña.";
             }
 
@@ -100,9 +107,11 @@ public class RegisterScript : MonoBehaviour
             {
                 if (!rgx.IsMatch(nameInput.text))
                 {
+                    errorFlag = true;
                     nameError.text = "Nombre erroneo.";
                 }
             }else{
+                errorFlag = true;
                 nameError.text = "Nombre requerido.";
             }
             
@@ -110,9 +119,11 @@ public class RegisterScript : MonoBehaviour
             {
                 if (!rgx.IsMatch(firstSurnameInput.text))
                 {
+                    errorFlag = true;
                     firstSurnameError.text = "Apellido erroneo.";
                 }
             }else{
+                errorFlag = true;
                 firstSurnameError.text="Apellido requerido.";
             }
 
@@ -120,7 +131,8 @@ public class RegisterScript : MonoBehaviour
             {
                 if (!rgx.IsMatch(secondSurnameInput.text))
                 {
-                    secondSurnameError.text = "apellido erroneo.";
+                    errorFlag = true;
+                    secondSurnameError.text = "Apellido erroneo.";
                 }
             }
 
@@ -138,31 +150,35 @@ public class RegisterScript : MonoBehaviour
             if (!chValidity)
             {
                 dateOfBirthError.text="Fecha no válida.";
+                errorFlag = true;
             }
             if (d.Year >= System.DateTime.Now.Year || d.Year < 1900)
             {
                 dateOfBirthError.text="Año no válido.";
+                errorFlag = true;
             }
 
+            if (!errorFlag)
+            {
+                string email = emailInput.text, password = passwordInput.text, repeatPassword = repeatPasswordInput.text,
+                   name = nameInput.text, firstSurname = firstSurnameInput.text, secondSurname = secondSurnameInput.text,
+                   day = dayInput.text, month = monthInput.text, year = yearInput.text,
+                   country = countryDropdown.options[countryDropdown.value].text, region = "";
+                if (regionDropdown.options.Count > 0)
+                {
+                    region = regionDropdown.options[regionDropdown.value].text;
+                    StartCoroutine(Register(email, password, name, firstSurname, secondSurname, day, month, year, country, region));
+                }
+                else
+                {
+                    StartCoroutine(Register(email, password, name, firstSurname, secondSurname, day, month, year, country));
+                }
+            }
         }
         catch (System.Exception ex)
         {
             registerMessage.text = ex.Message;
         }
-        /*
-        string email = emailInput.text, password = passwordInput.text, repeatPassword = repeatPasswordInput.text,
-               name = nameInput.text, firstSurname = firstSurnameInput.text, secondSurname = secondSurnameInput.text,
-               day = dayInput.text, month = monthInput.text, year = yearInput.text,
-               country = countryDropdown.options[countryDropdown.value].text, region = "";
-        if (regionDropdown.options.Count > 0)
-        {
-            region = regionDropdown.options[regionDropdown.value].text;
-            StartCoroutine(Register(email, password, name, firstSurname, secondSurname, day, month, year, country, region));
-        }
-        else
-        {
-            StartCoroutine(Register(email, password, name, firstSurname, secondSurname, day, month, year, country));
-        }*/
     }
 
     void CountryDropdownOnValueChanged()
@@ -182,7 +198,6 @@ public class RegisterScript : MonoBehaviour
     IEnumerator Register(string email, string password, string name, string firstSurname,
         string secondSurname, string day, string month, string year, string country)
     {
-        Debug.Log("Register w/o region");
         WWWForm form = new WWWForm();
         form.AddField("email", email);
         form.AddField("password", password);
@@ -201,7 +216,6 @@ public class RegisterScript : MonoBehaviour
     IEnumerator Register(string email, string password, string name, string firstSurname,
         string secondSurname, string day, string month, string year, string country, string region)
     {
-        Debug.Log("Register w/ region");
         WWWForm form = new WWWForm();
         form.AddField("email", email);
         form.AddField("password", password);
@@ -246,6 +260,5 @@ public class RegisterScript : MonoBehaviour
         }
         regionsStringList.RemoveAt(regionsStringList.Count - 1);
         regionDropdown.AddOptions(regionsStringList);
-        Debug.Log(regionsStringList.Count.ToString());
     }
 }

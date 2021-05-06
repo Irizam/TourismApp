@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class LoginScript : MonoBehaviour
 {
-    public Button loginButton, registerButton;
+    public Button loginButton, registerButton, goBackToMainScreenButton;
     public InputField emailInput, passwordInput;
     public Text loginMessage, errorEmailMessage, errorPasswordMessage;
     private IEnumerator showToastCoroutine;
@@ -16,6 +16,7 @@ public class LoginScript : MonoBehaviour
     {
         loginButton.onClick.AddListener(LoginButtonOnClick);
         registerButton.onClick.AddListener(RegisterButtonOnClick);
+        goBackToMainScreenButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
         passwordInput.inputType = InputField.InputType.Password;
     }
 
@@ -68,7 +69,12 @@ public class LoginScript : MonoBehaviour
 
     void RegisterButtonOnClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    }
+
+    void GoBackToMainScreenButtonOnClick()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     IEnumerator Login(string email, string password)
