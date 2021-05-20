@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LoginScript : MonoBehaviour
 {
-    public Button loginButton, registerButton, goBackToMainScreenButton;
+    public GameObject loginWindow, userWindow;
+    public Button loginButton, registerButton, goBackToMainScreenButton, logoutButton;
     public InputField emailInput, passwordInput;
-    public Text loginMessage, errorEmailMessage, errorPasswordMessage;
+    public Text loginMessage, errorEmailMessage, errorPasswordMessage, tokenMessage;
     private IEnumerator showToastCoroutine;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,19 @@ public class LoginScript : MonoBehaviour
         registerButton.onClick.AddListener(RegisterButtonOnClick);
         goBackToMainScreenButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
         passwordInput.inputType = InputField.InputType.Password;
+
+        logoutButton.onClick.AddListener(LogoutButtonOnClick);
+
+        if (PlayerPrefs.GetString("LoginToken") != "") {
+            loginWindow.SetActive(false);
+            userWindow.SetActive(true);
+            tokenMessage.text = PlayerPrefs.GetString("LoginToken");
+        }
+        else
+        {
+            loginWindow.SetActive(true);
+            userWindow.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -77,6 +92,12 @@ public class LoginScript : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
+    void LogoutButtonOnClick()
+    {
+        PlayerPrefs.SetString("LoginToken", "");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
     IEnumerator Login(string email, string password)
     {
         WWWForm form = new WWWForm();
@@ -85,6 +106,17 @@ public class LoginScript : MonoBehaviour
         WWW www = new WWW("https://tourismappar.000webhostapp.com/login.php", form);
         yield return www;
         ShowToast(www.text, 10);
+        if(www.text == "Bienvenido")
+        {
+            System.Random random = new System.Random();
+            string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            string token = new string(Enumerable.Repeat(chars, 40).Select(s => s[random.Next(s.Length)]).ToArray());
+            form.AddField("token", token);
+            www = new WWW("https://tourismappar.000webhostapp.com/insert_login_token.php", form);
+            yield return www;
+            PlayerPrefs.SetString("LoginToken", www.text);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
     }
 
     void ShowToast(string text, int duration)
