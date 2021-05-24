@@ -9,7 +9,7 @@ public class CommentScript : MonoBehaviour
     public InputField commentInput;
     public Button commentButton;
     public Text commentMessage;
-    string token,idClient="puto";
+    string token, idClient;
     // Start is called before the first frame update
     IEnumerator Start()
     {
