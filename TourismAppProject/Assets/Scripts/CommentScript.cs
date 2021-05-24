@@ -45,14 +45,7 @@ public class CommentScript : MonoBehaviour
         }
         
     }
-    IEnumerator GetIdClient(string token)
-    {
-        WWWForm form = new WWWForm();
-        form.AddField("loginToken", token);
-        WWW www = new WWW("https://tourismappar.000webhostapp.com/get_idClient.php", form);
-        yield return www;
-        idClient = www.text;
-    }
+
     IEnumerator RegisterComment(string comment, string idClient, string idTuristSpot)
     {
         WWWForm form = new WWWForm();
