@@ -268,6 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2cd26700ad26043a3b3aa207f9a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commentInput: {fileID: 0}
+  commentMessage: {fileID: 0}
   newButtonImg: {fileID: 21300000, guid: 665244998d9a6384b9bb63b0648bdc67, type: 3}
   oldButtonImg: {fileID: 21300000, guid: 8b1709fc639b90f4b9c74c9932c475b3, type: 3}
   buttonStar1: {fileID: 926438262}
@@ -759,6 +761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2cd26700ad26043a3b3aa207f9a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commentInput: {fileID: 0}
+  commentMessage: {fileID: 0}
   newButtonImg: {fileID: 21300000, guid: 665244998d9a6384b9bb63b0648bdc67, type: 3}
   oldButtonImg: {fileID: 21300000, guid: 8b1709fc639b90f4b9c74c9932c475b3, type: 3}
   buttonStar1: {fileID: 926438262}
@@ -913,6 +917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2cd26700ad26043a3b3aa207f9a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commentInput: {fileID: 0}
+  commentMessage: {fileID: 0}
   newButtonImg: {fileID: 21300000, guid: 665244998d9a6384b9bb63b0648bdc67, type: 3}
   oldButtonImg: {fileID: 21300000, guid: 8b1709fc639b90f4b9c74c9932c475b3, type: 3}
   buttonStar1: {fileID: 926438262}
@@ -1482,6 +1488,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2cd26700ad26043a3b3aa207f9a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commentInput: {fileID: 0}
+  commentMessage: {fileID: 1949336564}
   newButtonImg: {fileID: 21300000, guid: 665244998d9a6384b9bb63b0648bdc67, type: 3}
   oldButtonImg: {fileID: 21300000, guid: 8b1709fc639b90f4b9c74c9932c475b3, type: 3}
   buttonStar1: {fileID: 926438262}
@@ -1715,6 +1723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2cd26700ad26043a3b3aa207f9a02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commentInput: {fileID: 0}
+  commentMessage: {fileID: 0}
   newButtonImg: {fileID: 21300000, guid: 665244998d9a6384b9bb63b0648bdc67, type: 3}
   oldButtonImg: {fileID: 21300000, guid: 8b1709fc639b90f4b9c74c9932c475b3, type: 3}
   buttonStar1: {fileID: 926438262}
