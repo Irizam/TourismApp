@@ -53,7 +53,7 @@ public class LoginScript : MonoBehaviour
             firstSurnameInput.text = userDataStringArray[1];
             secondSurnameInput.text = userDataStringArray[2];
             string[] dateOfBirthStringArray = userDataStringArray[3].Split('-');
-            dateOfBirthMessage.text = dateOfBirthStringArray[2] + " de " + getMonthInString(dateOfBirthStringArray[1]) + ", " + dateOfBirthStringArray[0];
+            dateOfBirthMessage.text = dateOfBirthStringArray[2] + " de " + GetMonthInString(dateOfBirthStringArray[1]) + ", " + dateOfBirthStringArray[0];
 
             updatingUser = false;
         }
@@ -273,7 +273,7 @@ public class LoginScript : MonoBehaviour
         }
     }
 
-    string getMonthInString(string monthInInt)
+    string GetMonthInString(string monthInInt)
     {
         string monthInString = "";
         switch (int.Parse(monthInInt))

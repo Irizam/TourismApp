@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637581033556950267
+      ticks: 637581712159235865
     m_Hash: 4070978512
   m_LockFileStatus:
     m_FilePath: E:/Unity/TourismApp/TourismAppProject/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637581033556960282
+      ticks: 637581712159235865
     m_Hash: 2142867407
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
