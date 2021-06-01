@@ -58,12 +58,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Mapas\NavegateScript.cs" />
     <Compile Include="Assets\Scripts\Menu1Script.cs" />
+    <Compile Include="Assets\Scripts\ListScript.cs" />
     <Compile Include="Assets\Scripts\CommentScript.cs" />
     <Compile Include="Assets\Scripts\LoginScript.cs" />
     <Compile Include="Assets\Scripts\Menu2ButtonsStar.cs" />
     <Compile Include="Assets\Scripts\RegisterScript.cs" />
     <Compile Include="Assets\Scripts\MoreOptionsScript.cs" />
-    <Compile Include="Assets\Scripts\ListScript.cs" />
+    <Compile Include="Assets\Scripts\ChangePassword.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
