@@ -54,14 +54,12 @@ public class ChangePassword : MonoBehaviour
             errorMessage2.text = "Repita la contraseña.";
             flag = true;
         }
-        //
         if (flag == false)
         {
-            PlayerPrefs.SetString("LoginToken","");
             string loginToken = PlayerPrefs.GetString("LoginToken");
-            if (loginToken.Length >40)
+            Debug.Log("1:" + oldPassInput.text + " 2:" + newPassInput.text + " 3:" + loginToken);
+            if (loginToken.Length >=40)
             {
-                Debug.Log("1:" + oldPassInput.text + " 2:" + newPassInput.text + " 3:" + loginToken);
                 StartCoroutine(ChangePassword(oldPassInput.text, newPassInput.text, loginToken));
             }
             else errorMessage1.text = "Error: token vacio, reinicie sesión.";
