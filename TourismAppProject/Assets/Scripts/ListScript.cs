@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 public class ListScript : MonoBehaviour
 {
-    
+
+    public GameObject g;
     List<string> placesStringList = new List<string>();
     int total;
-    // Start is called before the first frame update
-    void Start()
+    // Start is called before the first frame update  
+  
+    string idString;
+    void Start() 
     {
         StartCoroutine(Places());
         
@@ -36,29 +39,35 @@ public class ListScript : MonoBehaviour
     
     IEnumerator Places()
     {
+     
+
         WWW www = new WWW("https://tourismappar.000webhostapp.com/spotID.php");
         yield return www;
         GameObject buttonTemplate = transform.GetChild(0).gameObject;
-        GameObject g;
-        string idString;
+     
         int quantity = int.Parse(www.text);
         for (int i = 1; i <= quantity; i++)
         {
+            
             g = Instantiate(buttonTemplate, transform);
+            g.name = i.ToString();            
+            g.AddComponent<buttonScrip>();
             WWWForm form = new WWWForm();
             form.AddField("id", i);
             WWW www1 = new WWW("https://tourismappar.000webhostapp.com/spots.php", form);
             yield return www1;
-            idString = www1.text;
+            idString = www1.text;        
             Debug.Log(www1.text);
+            Debug.Log("--- " + g.tag + " ---");
             g.transform.GetChild(0).GetComponent<Text>().text =idString;
+           
         }
 
         Destroy(buttonTemplate);
     }
+
+ 
    
 
-   
 
-   
 }
