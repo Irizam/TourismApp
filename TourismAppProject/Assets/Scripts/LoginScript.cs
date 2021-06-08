@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class LoginScript : MonoBehaviour
 {
     #region Login Window
+    [Header("Login Window")]
     public GameObject loginWindow;
     public Button loginButton, registerButton;
     public InputField emailInput, passwordInput;
@@ -17,16 +18,21 @@ public class LoginScript : MonoBehaviour
     #endregion
 
     #region User Window
+    [Header("User Window")]
     public GameObject userWindow;
-    public Button updateUserButton, logoutButton;
+    public Button updateUserButton, logoutButton, deleteButton, goBackButton;
     public InputField nameInput, firstSurnameInput, secondSurnameInput;
+    public Canvas blackScreen;
     public Text dateOfBirthMessage, errorNameMessage, errorFirstSurnameMessage, errorSecondSurnameMessage;
     bool updatingUser;
     #endregion
 
     #region Bottom Bar
+    [Header("Bottom Bar")]
     public Button goBackToMainScreenButton;
     #endregion
+
+    private bool isDeleteUserWindowOpen = false;
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -37,6 +43,13 @@ public class LoginScript : MonoBehaviour
 
         updateUserButton.onClick.AddListener(UpdateUserOnClick);
         logoutButton.onClick.AddListener(LogoutButtonOnClick);
+        deleteButton.onClick.AddListener(DeleteButtonOnClick);
+        goBackButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
+
+        float canvasX = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+        float canvasY = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.y;
+        blackScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(canvasX, canvasY);
+        blackScreen.enabled = false;
 
         goBackToMainScreenButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
 
@@ -116,7 +129,13 @@ public class LoginScript : MonoBehaviour
 
     void GoBackToMainScreenButtonOnClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        if(!isDeleteUserWindowOpen)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        else
+        {
+            isDeleteUserWindowOpen = false;
+            blackScreen.enabled = false;
+        }
     }
 
     void UpdateUserOnClick()
@@ -179,6 +198,12 @@ public class LoginScript : MonoBehaviour
     {
         PlayerPrefs.SetString("LoginToken", "");
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    void DeleteButtonOnClick()
+    {
+        isDeleteUserWindowOpen = true;
+        blackScreen.enabled = true;
     }
 
     IEnumerator Login(string email, string password)
