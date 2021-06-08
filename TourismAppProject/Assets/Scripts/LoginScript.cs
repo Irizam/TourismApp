@@ -20,7 +20,7 @@ public class LoginScript : MonoBehaviour
     #region User Window
     [Header("User Window")]
     public GameObject userWindow;
-    public Button updateUserButton, logoutButton, deleteButton, goBackButton;
+    public Button updateUserButton, logoutButton, deleteButton, goBackButton, deleteAccountButton;
     public InputField nameInput, firstSurnameInput, secondSurnameInput;
     public Canvas blackScreen;
     public Text dateOfBirthMessage, errorNameMessage, errorFirstSurnameMessage, errorSecondSurnameMessage;
@@ -44,6 +44,7 @@ public class LoginScript : MonoBehaviour
         updateUserButton.onClick.AddListener(UpdateUserOnClick);
         logoutButton.onClick.AddListener(LogoutButtonOnClick);
         deleteButton.onClick.AddListener(DeleteButtonOnClick);
+        deleteAccountButton.onClick.AddListener(DeleteAccountButtonOnClick);
         goBackButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
 
         float canvasX = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x;
@@ -206,6 +207,11 @@ public class LoginScript : MonoBehaviour
         blackScreen.enabled = true;
     }
 
+    void DeleteAccountButtonOnClick()
+    {
+        StartCoroutine(DeleteUser());
+    }
+
     IEnumerator Login(string email, string password)
     {
         WWWForm form = new WWWForm();
@@ -236,6 +242,20 @@ public class LoginScript : MonoBehaviour
         form.AddField("secondSurname", secondSurname);
         WWW www = new WWW("https://tourismappar.000webhostapp.com/update_user.php", form);
         yield return www;
+    }
+
+    IEnumerator DeleteUser()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginToken", PlayerPrefs.GetString("LoginToken"));
+        WWW www = new WWW("https://tourismappar.000webhostapp.com/delete_user.php", form);
+        yield return www;
+        if(www.text == "1")
+        {
+            PlayerPrefs.SetString("LoginToken", "");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+        Debug.Log(www.text);
     }
 
     void ShowToast(string text, int duration)
