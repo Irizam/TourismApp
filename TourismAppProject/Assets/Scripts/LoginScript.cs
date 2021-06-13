@@ -2,41 +2,62 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 public class LoginScript : MonoBehaviour
 {
     #region Login Window
+    [Header("Login Window")]
     public GameObject loginWindow;
-    public Button loginButton, registerButton;
+    public Button loginButton, registerButton, remindButton, confirmButton;
     public InputField emailInput, passwordInput;
     public Text loginMessage, errorEmailMessage, errorPasswordMessage;
     private IEnumerator showToastCoroutine;
     #endregion
 
     #region User Window
+    [Header("User Window")]
     public GameObject userWindow;
-    public Button updateUserButton, logoutButton;
+    public GameObject confirmButtonField;
+    public Button updateUserButton, logoutButton, deleteButton, goBackButton, deleteAccountButton;
     public InputField nameInput, firstSurnameInput, secondSurnameInput;
+    public Canvas blackScreen;
     public Text dateOfBirthMessage, errorNameMessage, errorFirstSurnameMessage, errorSecondSurnameMessage;
     bool updatingUser;
     #endregion
 
     #region Bottom Bar
+    [Header("Bottom Bar")]
     public Button goBackToMainScreenButton;
     #endregion
+
+    private bool isDeleteUserWindowOpen = false;
 
     // Start is called before the first frame update
     IEnumerator Start()
     {
         loginButton.onClick.AddListener(LoginButtonOnClick);
         registerButton.onClick.AddListener(RegisterButtonOnClick);
+        remindButton.onClick.AddListener(RemindButtonOnClick);
+        confirmButton.onClick.AddListener(ConfirmButtonOnClick);
         passwordInput.inputType = InputField.InputType.Password;
 
         updateUserButton.onClick.AddListener(UpdateUserOnClick);
         logoutButton.onClick.AddListener(LogoutButtonOnClick);
+        deleteButton.onClick.AddListener(DeleteButtonOnClick);
+        deleteAccountButton.onClick.AddListener(DeleteAccountButtonOnClick);
+        goBackButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
+
+        float canvasX = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x;
+        float canvasY = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.y;
+        blackScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(canvasX, canvasY);
+        blackScreen.enabled = false;
 
         goBackToMainScreenButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
 
@@ -109,6 +130,56 @@ public class LoginScript : MonoBehaviour
         }
     }
 
+    string email="";
+    string vercode="";
+    void RemindButtonOnClick()
+    {
+        errorEmailMessage.text = "";
+        if (emailInput.text != "")
+        {
+            try
+            {
+                System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(emailInput.text);
+
+            }
+            catch (System.Exception)
+            {
+                errorEmailMessage.text = "Formato incorrecto.";
+            }
+            email = emailInput.text;
+            
+            SendMail(email);
+
+            loginMessage.text="Revise el correo que ingresó";
+
+            confirmButtonField.SetActive(true);
+        }
+        else
+        {
+            errorEmailMessage.text = "Ingrese el correo.";
+        }
+    }
+
+    void ConfirmButtonOnClick()
+    {
+        if (emailInput.text == vercode)
+        {
+            if(passwordInput.text!="")
+            {
+                StartCoroutine(UpdatePswdAndSendEmail(email, passwordInput.text));
+            }
+            else
+            {
+                errorPasswordMessage.text="debe ingresar una contraseña";
+            }
+
+        }
+        else
+        {
+            errorEmailMessage.text = "El código es incorrecto";
+        }
+    }
+
     void RegisterButtonOnClick()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
@@ -116,7 +187,13 @@ public class LoginScript : MonoBehaviour
 
     void GoBackToMainScreenButtonOnClick()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        if(!isDeleteUserWindowOpen)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        else
+        {
+            isDeleteUserWindowOpen = false;
+            blackScreen.enabled = false;
+        }
     }
 
     void UpdateUserOnClick()
@@ -181,6 +258,96 @@ public class LoginScript : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
+    void DeleteButtonOnClick()
+    {
+        isDeleteUserWindowOpen = true;
+        blackScreen.enabled = true;
+    }
+
+    void DeleteAccountButtonOnClick()
+    {
+        StartCoroutine(DeleteUser());
+    }
+
+    
+    void SendMail(string email)
+    {
+        
+        System.Random random=new System.Random();
+        vercode=random.Next(100000,999999) + "";
+
+
+        Send(email, vercode);
+
+    }
+    IEnumerator UpdatePswdAndSendEmail(string email, string newPswd)
+    {
+        
+        WWWForm form = new WWWForm();
+        form.AddField("email", email);
+        form.AddField("pswd", newPswd);
+        WWW www = new WWW("https://tourismappar.000webhostapp.com/update_password.php", form);
+        yield return www;
+        if(www.text=="success")
+        {
+
+        SendSuccessEmail(email, newPswd);
+
+        loginMessage.text="Se actualizó correctamente";
+        vercode="";
+        passwordInput.text="";
+        emailInput.text="";
+        email="";
+        
+        confirmButtonField.SetActive(false);
+        }
+        else
+        {
+        loginMessage.text="nope";
+        }
+
+
+    }
+
+    public static void Send(string email, string vercod) {
+ 
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.To.Add(email);
+        mail.Subject = "Recordar contraseña";
+        mail.Body = "Introduzca el codigo " + vercod+" en el campo de Correo Electronico y su nueva contraseña en el campo de contraseña, luego presione Confirmar";
+ 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        smtp.Port = 587;
+        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.EnableSsl = true;
+ 
+        ServicePointManager.ServerCertificateValidationCallback =
+                delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+                    return true;
+                };
+        smtp.Send(mail);
+    }
+    public static void SendSuccessEmail(string email, string newPswd) {
+ 
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.To.Add(email);
+        mail.Subject = "Recordar contraseña";
+        mail.Body = "Su nueva contraseña es " + newPswd;
+ 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        smtp.Port = 587;
+        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.EnableSsl = true;
+ 
+        ServicePointManager.ServerCertificateValidationCallback =
+                delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+                    return true;
+                };
+        smtp.Send(mail);
+    }
+
     IEnumerator Login(string email, string password)
     {
         WWWForm form = new WWWForm();
@@ -211,6 +378,20 @@ public class LoginScript : MonoBehaviour
         form.AddField("secondSurname", secondSurname);
         WWW www = new WWW("https://tourismappar.000webhostapp.com/update_user.php", form);
         yield return www;
+    }
+
+    IEnumerator DeleteUser()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("loginToken", PlayerPrefs.GetString("LoginToken"));
+        WWW www = new WWW("https://tourismappar.000webhostapp.com/delete_user.php", form);
+        yield return www;
+        if(www.text == "1")
+        {
+            PlayerPrefs.SetString("LoginToken", "");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
+        Debug.Log(www.text);
     }
 
     void ShowToast(string text, int duration)

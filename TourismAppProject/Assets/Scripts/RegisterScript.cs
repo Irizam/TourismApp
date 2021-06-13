@@ -4,6 +4,10 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 public class RegisterScript : MonoBehaviour
 {
@@ -211,6 +215,9 @@ public class RegisterScript : MonoBehaviour
         WWW www = new WWW("https://tourismappar.000webhostapp.com/register_user.php", form);
         yield return www;
         registerMessage.text = www.text;
+
+        
+        Send(email, name, firstSurname, password);
     }
 
     IEnumerator Register(string email, string password, string name, string firstSurname,
@@ -230,6 +237,29 @@ public class RegisterScript : MonoBehaviour
         WWW www = new WWW("https://tourismappar.000webhostapp.com/register_user.php", form);
         yield return www;
         registerMessage.text = www.text;
+
+        
+        Send(email, name, firstSurname, password);
+    }
+
+    public static void Send(string email, string name, string firstname, string pswd) {
+ 
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.To.Add(email);
+        mail.Subject = "Bienvenido a TourismApp <3";
+        mail.Body = "Cuenta creada para "+name+" "+firstname+" con la contraseña "+pswd;
+ 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        smtp.Port = 587;
+        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.EnableSsl = true;
+ 
+        ServicePointManager.ServerCertificateValidationCallback =
+                delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+                    return true;
+                };
+        smtp.Send(mail);
     }
 
     IEnumerator LoadCountries()
