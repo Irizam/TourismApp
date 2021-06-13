@@ -7,20 +7,21 @@ using UnityEngine.UI;
 
 
 
-
+//Funcionalidad 100%
 public class Menu2ButtonsStar : MonoBehaviour
 {
 
-    public InputField commentInput;
+    public InputField commentInput;//Instanciamos le inputField
 
-    public Text commentMessage;
-    string token, idClient = "user";
+    public Text commentMessage;//Se utiliza para los errores(Pureba, se puede borrar luego)
+    string token, idClient="user"; //Variables para agarrar los datos
 
-
+    /// <summary>
+    /// Logica para obtener el ID
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Start()
     {
-        
-
         token = PlayerPrefs.GetString("LoginToken");
         WWWForm form = new WWWForm();
         form.AddField("loginToken", token);
@@ -29,9 +30,10 @@ public class Menu2ButtonsStar : MonoBehaviour
         idClient = www.text;
         
     }
-
-
-    // Start is called before the first frame update
+    
+    /// <summary>
+    /// Declaracion de elementos de la interfaz Grafica
+    /// </summary>
     public Sprite newButtonImg;
     public Sprite oldButtonImg;
     public Button buttonStar1;
@@ -41,7 +43,13 @@ public class Menu2ButtonsStar : MonoBehaviour
     public Button buttonStar5;
     public int counter1 = 2;
     public string totalStarsRate = "";
-
+    /// <summary>
+    /// Logica para la puntuacion y registrarlo a la BDD
+    /// </summary>
+    /// <param name="score"></param>
+    /// <param name="idClient"></param>
+    /// <param name="idTuristSpot"></param>
+    /// <returns></returns>
     IEnumerator RegisterScore(string score, string idClient, string idTuristSpot)
     {
         WWWForm form = new WWWForm();
@@ -52,7 +60,10 @@ public class Menu2ButtonsStar : MonoBehaviour
         yield return www;
         commentMessage.text = www.text;
     }
-
+    /// <summary>
+    /// Logica para pasar de una imagen a otra
+    /// </summary>
+    #region ChangeImage
     public void ChangeImage1()
     {
         counter1 = 2;
@@ -86,12 +97,11 @@ public class Menu2ButtonsStar : MonoBehaviour
             totalStarsRate = "0";
         }
         
-    }
-
+    } 
     public void ChangeImage2()
     {
-        counter1 = 2;
-        counter1++;
+        counter1 = 2;//Inicializamos el contador de las estrellas
+        counter1++; 
         if (counter1 % 2 == 1)
         {
             buttonStar1.image.sprite = newButtonImg;
@@ -105,18 +115,7 @@ public class Menu2ButtonsStar : MonoBehaviour
             string score = totalStarsRate, idTouristSpot = "1";
             StartCoroutine(RegisterScore(score, idClient, idTouristSpot));
         }
-        else
-        {
-            buttonStar1.image.sprite = oldButtonImg;
-            buttonStar2.image.sprite = oldButtonImg;
-            buttonStar3.image.sprite = oldButtonImg;
-            buttonStar4.image.sprite = oldButtonImg;
-            buttonStar5.image.sprite = oldButtonImg;
-
-
-            totalStarsRate = "0";
-        }
-
+       
     }
 
     public void ChangeImage3()
@@ -136,18 +135,7 @@ public class Menu2ButtonsStar : MonoBehaviour
             string score = totalStarsRate, idTouristSpot = "1";
             StartCoroutine(RegisterScore(score, idClient, idTouristSpot));
         }
-        else
-        {
-            buttonStar1.image.sprite = oldButtonImg;
-            buttonStar2.image.sprite = oldButtonImg;
-            buttonStar3.image.sprite = oldButtonImg;
-            buttonStar4.image.sprite = oldButtonImg;
-            buttonStar5.image.sprite = oldButtonImg;
-
-
-            totalStarsRate = "0";
-        }
-
+        
     }
 
     public void ChangeImage4()
@@ -166,18 +154,7 @@ public class Menu2ButtonsStar : MonoBehaviour
             string score = totalStarsRate, idTouristSpot = "1";
             StartCoroutine(RegisterScore(score, idClient, idTouristSpot));
         }
-        else
-        {
-            buttonStar1.image.sprite = oldButtonImg;
-            buttonStar2.image.sprite = oldButtonImg;
-            buttonStar3.image.sprite = oldButtonImg;
-            buttonStar4.image.sprite = oldButtonImg;
-            buttonStar5.image.sprite = oldButtonImg;
-
-
-            totalStarsRate = "0";
-        }
-
+        
     }
 
     public void ChangeImage5()
@@ -192,26 +169,10 @@ public class Menu2ButtonsStar : MonoBehaviour
             buttonStar4.image.sprite = newButtonImg;
             buttonStar5.image.sprite = newButtonImg;
 
-
             totalStarsRate = "5";
             string score = totalStarsRate, idTouristSpot = "1";
             StartCoroutine(RegisterScore(score, idClient, idTouristSpot));
         }
-        else
-        {
-            buttonStar1.image.sprite = oldButtonImg;
-            buttonStar2.image.sprite = oldButtonImg;
-            buttonStar3.image.sprite = oldButtonImg;
-            buttonStar4.image.sprite = oldButtonImg;
-            buttonStar5.image.sprite = oldButtonImg;
-
-
-            totalStarsRate = "0";
-        }
-
     }
-
-
-
-    
+    #endregion
 }

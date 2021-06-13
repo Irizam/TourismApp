@@ -45,9 +45,10 @@ public class buttonScrip : MonoBehaviour
         StartCoroutine(PlaceUbication(id));
         navegationScrip.latt = lat;
         navegationScrip.logg = lon;
-
+        
+        //hola, soy rodri. había un conflicto acá y no sabía con cual de estas dos líneas de código dejarle, por ende, deje los dos:
+        PlayerPrefs.SetString("SpotID", id);
         ClassIdHolder.id = int.Parse(id);
-
     }
 
     IEnumerator PlaceUbication(string val)
