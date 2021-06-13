@@ -181,9 +181,10 @@
           </e>
           <e p="Media" t="Include">
             <e p="BrowseScene.cs" t="Include" />
+            <e p="ClassIdHolder.cs" t="Include" />
             <e p="SceneScriptMedia.cs" t="Include" />
+            <e p="SceneScriptVideoMenu.cs" t="Include" />
             <e p="ScriptImageMenu.cs" t="Include" />
-            <e p="ScriptVideoMenu.cs" t="Include" />
             <e p="UrlManager.cs" t="Include" />
           </e>
           <e p="Menu1Script.cs" t="Include" />
