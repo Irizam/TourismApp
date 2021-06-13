@@ -33,7 +33,8 @@ public class CommentScript : MonoBehaviour
     {
         commentMessage.text = "";
         Regex rgx = new Regex(@"^[a-zA-Z]{1,60}$");
-        string comment = commentInput.text, idTouristSpot = "1";
+        
+        string comment = commentInput.text, idTouristSpot = PlayerPrefs.GetString("SpotID"); ;
         if (!rgx.IsMatch(comment))
         {
             StartCoroutine(RegisterComment(comment, idClient, idTouristSpot));
@@ -43,7 +44,7 @@ public class CommentScript : MonoBehaviour
         {
             commentMessage.text = "Solo se permiten letras y números";
         }
-        
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     IEnumerator RegisterComment(string comment, string idClient, string idTuristSpot)
