@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,10 +20,18 @@ public class buttonScrip : MonoBehaviour
     string idString;
 
     public string lat, lon;
+
     void Start()
     {
         //latt = "h";
         //lonn = "m";
+        
+        //Verifica que vuelve de la ventana MediaPrincipal para ubicarse en el mapa
+        if (ClassIdHolder.id != 0)
+        {
+            // obtiene el id de la clase para dar la ubicacion correspondiente
+            StartCoroutine(PlaceUbication(ClassIdHolder.id.ToString()));
+        }
 
 
     }
@@ -36,7 +45,10 @@ public class buttonScrip : MonoBehaviour
         StartCoroutine(PlaceUbication(id));
         navegationScrip.latt = lat;
         navegationScrip.logg = lon;
+        
+        //hola, soy rodri. había un conflicto acá y no sabía con cual de estas dos líneas de código dejarle, por ende, deje los dos:
         PlayerPrefs.SetString("SpotID", id);
+        ClassIdHolder.id = int.Parse(id);
     }
 
     IEnumerator PlaceUbication(string val)

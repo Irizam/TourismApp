@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu3.unity
     guid: 47138b6afca03ec4f87ad2a4eb19627d
+  - enabled: 1
+    path: Assets/Scenes/Home/VideoMenu.unity
+    guid: c4150e5a173162a47acf71d71d86f02b
+  - enabled: 1
+    path: Assets/Scenes/Home/MediaPrincipal.unity
+    guid: d7c5a4e4114495348804d51a6fb50e9d
+  - enabled: 1
+    path: Assets/Scenes/Home/MediaMenu.unity
+    guid: 26d51232eec7f9440931a2c91437c96b
   m_configObjects: {}
