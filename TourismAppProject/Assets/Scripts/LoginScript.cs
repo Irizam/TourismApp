@@ -121,7 +121,7 @@ public class LoginScript : MonoBehaviour
         }
         if (password=="")
         {
-            errorPasswordMessage.text = "La contrase�a es requerida";
+            errorPasswordMessage.text = "La contraseña es requerida";
             flag = false;
         }
         if (flag)
@@ -246,7 +246,7 @@ public class LoginScript : MonoBehaviour
                 updatingUser = false;
             }
         } else {
-            updateUserButton.GetComponentInChildren<Text>().text = "Confirmar Actualizaci�n";
+            updateUserButton.GetComponentInChildren<Text>().text = "Confirmar Actualización";
             updatingUser = true;
             nameInput.readOnly = firstSurnameInput.readOnly = secondSurnameInput.readOnly = false;
         }
