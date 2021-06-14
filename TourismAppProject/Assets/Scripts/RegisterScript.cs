@@ -216,8 +216,14 @@ public class RegisterScript : MonoBehaviour
         yield return www;
         registerMessage.text = www.text;
 
-        
         Send(email, name, firstSurname, password);
+
+        if(www.text == "Usuario registrado")
+        {
+            registerButton.enabled = false;
+            yield return new WaitForSeconds(5);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        }
     }
 
     IEnumerator Register(string email, string password, string name, string firstSurname,
@@ -240,6 +246,13 @@ public class RegisterScript : MonoBehaviour
 
         
         Send(email, name, firstSurname, password);
+
+        if (www.text == "Usuario registrado")
+        {
+            registerButton.enabled = false;
+            yield return new WaitForSeconds(5);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        }
     }
 
     public static void Send(string email, string name, string firstname, string pswd) {
