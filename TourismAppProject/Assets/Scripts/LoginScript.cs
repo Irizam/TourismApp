@@ -164,13 +164,13 @@ public class LoginScript : MonoBehaviour
     {
         if (emailInput.text == vercode)
         {
-            if(passwordInput.text!="")
+            if(passwordInput.text!="" && passwordInput.text.Length >= 8 && passwordInput.text.Length <= 20)
             {
                 StartCoroutine(UpdatePswdAndSendEmail(email, passwordInput.text));
             }
             else
             {
-                errorPasswordMessage.text="debe ingresar una contraseña";
+                errorPasswordMessage.text="contraseña invalida";
             }
 
         }
