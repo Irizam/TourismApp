@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CommentScript : MonoBehaviour
 {
+    //Definimos variables
     public InputField commentInput;
     public Button commentButton;
     public Text commentMessage;
@@ -14,14 +15,13 @@ public class CommentScript : MonoBehaviour
     IEnumerator Start()
     {
         commentButton.onClick.AddListener(CommentButtonOnClick);
-
+        //Hagarramos el id del cliente
         token = PlayerPrefs.GetString("LoginToken");
         WWWForm form = new WWWForm();
         form.AddField("loginToken", token);
         WWW www = new WWW("https://tourismappar.000webhostapp.com/get_idClient.php", form);
         yield return www;
         idClient = www.text;
-        commentMessage.text =idClient;
     }
 
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class CommentScript : MonoBehaviour
     }
     void CommentButtonOnClick()
     {
+        //Metodo del boton que llama al metodo para insetar el comentario
         commentMessage.text = "";
         Regex rgx = new Regex(@"^[a-zA-Z]{1,60}$");
         
@@ -44,17 +45,27 @@ public class CommentScript : MonoBehaviour
         {
             commentMessage.text = "Solo se permiten letras y números";
         }
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        
     }
 
     IEnumerator RegisterComment(string comment, string idClient, string idTuristSpot)
     {
+        // Metodo para insertar comentarios
         WWWForm form = new WWWForm();
         form.AddField("comment", comment);
         form.AddField("idClient", idClient);
         form.AddField("idTuristSpot", idTuristSpot);
         WWW www = new WWW("https://tourismappar.000webhostapp.com/insert_comment.php", form);
         yield return www;
-        commentMessage.text = www.text;
+        if (www.text== "Por favor no use lenguaje ofensivo")
+        {
+            commentMessage.text = www.text;
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(5);
+        }
+
+        
     }
 }
