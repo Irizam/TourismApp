@@ -2,16 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 public class LoginScript : MonoBehaviour
 {
     #region Login Window
     [Header("Login Window")]
     public GameObject loginWindow;
-    public Button loginButton, registerButton;
+    public Button loginButton, registerButton, remindButton, confirmButton;
     public InputField emailInput, passwordInput;
     public Text loginMessage, errorEmailMessage, errorPasswordMessage;
     private IEnumerator showToastCoroutine;
@@ -20,6 +24,7 @@ public class LoginScript : MonoBehaviour
     #region User Window
     [Header("User Window")]
     public GameObject userWindow;
+    public GameObject confirmButtonField;
     public Button updateUserButton, logoutButton, deleteButton, goBackButton, deleteAccountButton;
     public InputField nameInput, firstSurnameInput, secondSurnameInput;
     public Canvas blackScreen;
@@ -39,6 +44,8 @@ public class LoginScript : MonoBehaviour
     {
         loginButton.onClick.AddListener(LoginButtonOnClick);
         registerButton.onClick.AddListener(RegisterButtonOnClick);
+        remindButton.onClick.AddListener(RemindButtonOnClick);
+        confirmButton.onClick.AddListener(ConfirmButtonOnClick);
         passwordInput.inputType = InputField.InputType.Password;
 
         updateUserButton.onClick.AddListener(UpdateUserOnClick);
@@ -114,12 +121,62 @@ public class LoginScript : MonoBehaviour
         }
         if (password=="")
         {
-            errorPasswordMessage.text = "La contrase�a es requerida";
+            errorPasswordMessage.text = "La contraseña es requerida";
             flag = false;
         }
         if (flag)
         {
             StartCoroutine(Login(email, password));
+        }
+    }
+
+    string email="";
+    string vercode="";
+    void RemindButtonOnClick()
+    {
+        errorEmailMessage.text = "";
+        if (emailInput.text != "")
+        {
+            try
+            {
+                System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(emailInput.text);
+
+            }
+            catch (System.Exception)
+            {
+                errorEmailMessage.text = "Formato incorrecto.";
+            }
+            email = emailInput.text;
+            
+            SendMail(email);
+
+            loginMessage.text="Revise el correo que ingresó";
+
+            confirmButtonField.SetActive(true);
+        }
+        else
+        {
+            errorEmailMessage.text = "Ingrese el correo.";
+        }
+    }
+
+    void ConfirmButtonOnClick()
+    {
+        if (emailInput.text == vercode)
+        {
+            if(passwordInput.text!="" && passwordInput.text.Length >= 8 && passwordInput.text.Length <= 20)
+            {
+                StartCoroutine(UpdatePswdAndSendEmail(email, passwordInput.text));
+            }
+            else
+            {
+                errorPasswordMessage.text="contraseña invalida";
+            }
+
+        }
+        else
+        {
+            errorEmailMessage.text = "El código es incorrecto";
         }
     }
 
@@ -189,7 +246,7 @@ public class LoginScript : MonoBehaviour
                 updatingUser = false;
             }
         } else {
-            updateUserButton.GetComponentInChildren<Text>().text = "Confirmar Actualizaci�n";
+            updateUserButton.GetComponentInChildren<Text>().text = "Confirmar Actualización";
             updatingUser = true;
             nameInput.readOnly = firstSurnameInput.readOnly = secondSurnameInput.readOnly = false;
         }
@@ -210,6 +267,85 @@ public class LoginScript : MonoBehaviour
     void DeleteAccountButtonOnClick()
     {
         StartCoroutine(DeleteUser());
+    }
+
+    
+    void SendMail(string email)
+    {
+        
+        System.Random random=new System.Random();
+        vercode=random.Next(100000,999999) + "";
+
+
+        Send(email, vercode);
+
+    }
+    IEnumerator UpdatePswdAndSendEmail(string email, string newPswd)
+    {
+        
+        WWWForm form = new WWWForm();
+        form.AddField("email", email);
+        form.AddField("pswd", newPswd);
+        WWW www = new WWW("https://tourismappar.000webhostapp.com/update_password.php", form);
+        yield return www;
+        if(www.text=="success")
+        {
+
+        SendSuccessEmail(email, newPswd);
+
+        loginMessage.text="Se actualizó correctamente";
+        vercode="";
+        passwordInput.text="";
+        emailInput.text="";
+        email="";
+        
+        confirmButtonField.SetActive(false);
+        }
+        else
+        {
+        loginMessage.text="nope";
+        }
+
+
+    }
+
+    public static void Send(string email, string vercod) {
+ 
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.To.Add(email);
+        mail.Subject = "Recordar contraseña";
+        mail.Body = "Introduzca el codigo " + vercod+" en el campo de Correo Electronico y su nueva contraseña en el campo de contraseña, luego presione Confirmar";
+ 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        smtp.Port = 587;
+        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.EnableSsl = true;
+ 
+        ServicePointManager.ServerCertificateValidationCallback =
+                delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+                    return true;
+                };
+        smtp.Send(mail);
+    }
+    public static void SendSuccessEmail(string email, string newPswd) {
+ 
+        MailMessage mail = new MailMessage();
+        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.To.Add(email);
+        mail.Subject = "Recordar contraseña";
+        mail.Body = "Su nueva contraseña es " + newPswd;
+ 
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        smtp.Port = 587;
+        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.EnableSsl = true;
+ 
+        ServicePointManager.ServerCertificateValidationCallback =
+                delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
+                    return true;
+                };
+        smtp.Send(mail);
     }
 
     IEnumerator Login(string email, string password)
