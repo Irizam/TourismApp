@@ -54,6 +54,11 @@ public class MoreOptionsScript : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
+    public void BUTTON_AR()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(11);
+    }
+
     //ubication from place 
 
     IEnumerator PlaceUbication(int val)
