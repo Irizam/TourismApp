@@ -6,15 +6,18 @@ using UnityEngine.UI;
 
 public class ListScript : MonoBehaviour
 {
-
+    #region DeclaracionVariables
     public GameObject g;
-    List<string> placesStringList = new List<string>();
-    int total;
-    // Start is called before the first frame update  
-  
     string idString;
+    #endregion
+
+
+    // Start is called before the first frame update  
+
+
     void Start() 
     {
+        //Activa el metodo places()
         StartCoroutine(Places());
         
 
@@ -25,6 +28,7 @@ public class ListScript : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
+            //Condicional que revisa si el usuario le dio al boton de atras en celular, o escape en PC, para salirse de la ventana
             if (Application.platform == RuntimePlatform.Android)
             {
                 AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
@@ -36,6 +40,10 @@ public class ListScript : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Este metodo se conecta con el host y busca la cantidad de lugares registrados en la base de datos
+    /// Luego utlizando un ciclo for genera un objeto con el tipo de variable gameobject para poder generar un boton con los datos encontrados en otra consulta con la base datos
+    /// /// </summary>
     
     IEnumerator Places()
     {

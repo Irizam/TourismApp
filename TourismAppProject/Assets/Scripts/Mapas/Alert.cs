@@ -12,20 +12,22 @@ public class Alert : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        //llamanso a la base de datos
+        //obtenemos latitud y longitud de todos los lugares turísticos registrados en la base de datos
         WWW www = new WWW("https://tourismappar.000webhostapp.com/get_spot_lat_long.php");
         yield return www;
-        string[] latLongArray = www.text.Split('|');
+        string[] latLongArray = www.text.Split('|'); //separa la latitud y longitud de cada lugar mediante la barra |
         for (int i = 0; i < latLongArray.Length; i += 2)
         {
-
+            //llenamos la lista spotList con las latitudes y longitudes de cada lugar
             spotList.Add(new Tuple<double, double>(double.Parse(latLongArray[i].Replace(',', '.'), CultureInfo.InvariantCulture), double.Parse(latLongArray[i + 1].Replace(',', '.'), CultureInfo.InvariantCulture)));
-            Debug.Log(double.Parse(latLongArray[i].Replace(',', '.'), CultureInfo.InvariantCulture) + " , " + double.Parse(latLongArray[i + 1].Replace(',', '.'), CultureInfo.InvariantCulture) );
+            //Debug.Log(double.Parse(latLongArray[i].Replace(',', '.'), CultureInfo.InvariantCulture) + " , " + double.Parse(latLongArray[i + 1].Replace(',', '.'), CultureInfo.InvariantCulture) );
         }
     }
     static class DistanceAlgorithm
     {
         const double PIx = 3.141592653589793;
-        const double RADIUS = 6378137;//metros
+        const double RADIUS = 6378137;//el dato está en metros
 
         /// <summary>
         /// Convert degrees to Radians
@@ -53,7 +55,7 @@ public class Alert : MonoBehaviour
         {
             double dlon = Radians(lon2 - lon1);
             double dlat = Radians(lat2 - lat1);
-
+            //calculamos la distancia con la fórmula de Haversine
             double a = (Math.Sin(dlat / 2) * Math.Sin(dlat / 2)) + Math.Cos(Radians(lat1)) * Math.Cos(Radians(lat2)) * (Math.Sin(dlon / 2) * Math.Sin(dlon / 2));
             double angle = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             return angle * RADIUS;
@@ -68,24 +70,26 @@ public class Alert : MonoBehaviour
     void Update()
     {
         int countInPlace = 0;
-        foreach (var item in spotList)
+        foreach (var item in spotList)//va revisando comparando con los lugares tur{isticos si hay uno cercano
         {
             long2 = item.Item2;
             lat2 = item.Item1;
             distancia = DistanceAlgorithm.DistanceBetweenPlaces(long1, lat1, long2, lat2);
-            //Debug.Log(long2 + " , " + lat2);
-            if (distancia < 200)
+           
+            if (distancia < 200)//verifica si la distancia del lugar turístico es menos de 200 metros 
             {
                 countInPlace++;
-                if(inPlace == false)
+                //Verifica si está en el lugar
+                if (inPlace == false)
                 {
-                    Handheld.Vibrate();
+                    Handheld.Vibrate();//Método para que vibre el celular
                     inPlace = true;
                 }
             }
         }
         globalCounter = countInPlace;
-        if(globalCounter == 0) {
+        //si la persona ya no está en el lugar la bander inPlace vuelve a estar en falso
+        if (globalCounter == 0) {
             inPlace = false;
         }
     }

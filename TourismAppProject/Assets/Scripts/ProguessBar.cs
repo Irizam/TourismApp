@@ -14,24 +14,17 @@ public class ProguessBar : MonoBehaviour
     /// Declaracion de variables de los proguess bar e imagenes
     /// </summary>
 
+    //limite de la barra
+    private int maximunPB;  
 
-    private int maximunPB;
-
-    private string Cadena;
-
-
-
-    private int currentPB1;
-    
-    private int currentPB2;
-    
-    private int currentPB3;
-    
-    private int currentPB4;
-    
+    //valores de los proguess bar
+    private int currentPB1;    
+    private int currentPB2;    
+    private int currentPB3;    
+    private int currentPB4;    
     private int currentPB5;
 
-
+    //variables para las imagenes
     public Image mask1;
     public Image mask2;
     public Image mask3;
@@ -40,6 +33,10 @@ public class ProguessBar : MonoBehaviour
 
     public Text Calification;
     private double average;
+
+    //almacena los datos recaudados 
+
+    private string Cadena;
 
 
 
@@ -63,14 +60,20 @@ public class ProguessBar : MonoBehaviour
         char delimitador = '|';
         string[] valores = Cadena.Split(delimitador);
 
+        //llenado de los valores en cada variable respectiva
+        //maximunPB para el valor maximo de los mproguess bar
         maximunPB = int.Parse(valores[0]);
+        //valor de cada proguess bar
         currentPB1 = int.Parse(valores[1]);
         currentPB2 = int.Parse(valores[2]);
         currentPB3 = int.Parse(valores[3]);
         currentPB4 = int.Parse(valores[4]);
         currentPB5 = int.Parse(valores[5]);
 
-        average = (5 * currentPB5 + 4 * currentPB4 + 3 * currentPB3 + 2 * currentPB2 + 1 * currentPB1) / (currentPB5 + currentPB4 + currentPB3 + currentPB2 + currentPB1);
+        //es la formula para el promedio de todos los datos
+
+        average =(5 * currentPB5 + 4 * currentPB4 + 3 * currentPB3 + 2 * currentPB2 + 1 * currentPB1) / (currentPB5 + currentPB4 + currentPB3 + currentPB2 + currentPB1);
+        //media total
         Calification.text = average.ToString();
     }
 
@@ -85,23 +88,17 @@ public class ProguessBar : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {       
 
         GetCurrentFill1();
         GetCurrentFill2();
         GetCurrentFill3();
         GetCurrentFill4();
         GetCurrentFill5();
-
-        //Average();
+        
     }
 
-    //void Average()
-    //{
-    //    average = (5 * currentPB5 + 4 * currentPB4 + 3 * currentPB3 + 2 * currentPB2 + 1 * currentPB1) / (currentPB5 + currentPB4 + currentPB3 + currentPB2 + currentPB1);
-    //    Calification.text = average.ToString();
-    //}
+
 
     /// <summary>
     /// Logica para el llenado de los proguess bar

@@ -9,7 +9,7 @@ public class SceneScriptMedia : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //Asignamos la funcionalidad de los onClicks a los botones para redirigir a las ventas de imagenes, video y mapa
         btnImage.onClick.AddListener(SceneImage);
         btnVideo.onClick.AddListener(SceneVideo);
         btnReturn.onClick.AddListener(SceneMap);
@@ -20,7 +20,9 @@ public class SceneScriptMedia : MonoBehaviour
     {
         
     }
-    
+    /// <summary>
+    /// Metodo para redireccionar a las ventanas de imagenes, videos y a la ventana principal del mapa
+    /// </summary>
     public void SceneImage()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(8);

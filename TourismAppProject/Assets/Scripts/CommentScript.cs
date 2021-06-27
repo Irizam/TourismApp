@@ -11,8 +11,12 @@ public class CommentScript : MonoBehaviour
     public InputField commentInput;
     public Button commentButton;
     public Text commentMessage;
-    string token, idClient;
+    string token, idClient="0";
     // Start is called before the first frame update
+    /// <summary>
+    /// Start
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Start()
     {
         commentButton.onClick.AddListener(CommentButtonOnClick);
@@ -30,25 +34,42 @@ public class CommentScript : MonoBehaviour
     {
         
     }
+    /// <summary>
+    /// metodo del boton Inserción comentario
+    /// </summary>
     void CommentButtonOnClick()
     {
         //Metodo del boton que llama al metodo para insetar el comentario
-        commentMessage.text = "";
-        Regex rgx = new Regex(@"^[a-zA-Z]{1,60}$");
-        
-        string comment = commentInput.text, idTouristSpot = PlayerPrefs.GetString("SpotID"); ;
-        if (!rgx.IsMatch(comment))
+        if (idClient!="0")
         {
-            StartCoroutine(RegisterComment(comment, idClient, idTouristSpot));
-            commentInput.text = "";
+            commentMessage.text = "";
+            Regex rgx = new Regex(@"^[a-zA-Z]{1,60}$");
+
+            string comment = commentInput.text, idTouristSpot = PlayerPrefs.GetString("SpotID"); 
+            if (!rgx.IsMatch(comment))
+            {
+                StartCoroutine(RegisterComment(comment, idClient, idTouristSpot));
+                commentInput.text = "";
+            }
+            else
+            {
+                commentMessage.text = "Solo se permiten letras y números";
+            }
         }
         else
         {
-            commentMessage.text = "Solo se permiten letras y números";
+            commentMessage.text = "Debe estar logeado";
         }
         
     }
 
+    /// <summary>
+    /// MEtodo RegisterComment
+    /// </summary>
+    /// <param name="comment"></param>
+    /// <param name="idClient"></param>
+    /// <param name="idTuristSpot"></param>
+    /// <returns></returns>
     IEnumerator RegisterComment(string comment, string idClient, string idTuristSpot)
     {
         // Metodo para insertar comentarios

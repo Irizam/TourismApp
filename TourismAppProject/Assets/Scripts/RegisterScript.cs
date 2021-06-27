@@ -11,21 +11,41 @@ using System.Net.Security;
 
 public class RegisterScript : MonoBehaviour
 {
+    /// <summary>
+    /// Nombre de la aplicacion: 
+    /// Nombre del desarrollador: Sergio Rodrigo Iriarte Zamorano
+    /// Nombre del desarrollador: Jhonatan Levi Sanga Balcazar
+    /// Fecha de Creacion: ?
+    /// </summary>
+
+    //<copyright file = "RegisterScript.cs" company = "">
+    //
+    //</copyright>
+    //<author>Sergio Rodrigo Iriarte Zamorano</author>
+
     public InputField emailInput, passwordInput, repeatPasswordInput, nameInput, firstSurnameInput,
         secondSurnameInput, dayInput, monthInput, yearInput;
     public Dropdown countryDropdown, regionDropdown;
     public Button loginButton, registerButton;
     public Text registerMessage, emailError, passwordError, repeatpasswordError, nameError, firstSurnameError, secondSurnameError, dateOfBirthError;
     List<string> regionsStringList = new List<string>();
+    
     // Start is called before the first frame update
     void Start()
     {
+        //Dar el accion "onClick" a los botones del UI
         loginButton.onClick.AddListener(LoginButtonOnClick);
         registerButton.onClick.AddListener(RegisterButtonOnClick);
+
+        //Dar el accion "onValueChanged" al dropdown de pais
         countryDropdown.onValueChanged.AddListener(delegate {
             CountryDropdownOnValueChanged();
         });
+
+        //Cambiar el formato de los UI de contraseña para que no se pueda ver la contraseña
         passwordInput.inputType = repeatPasswordInput.inputType = InputField.InputType.Password;
+
+        //Carga los distintos paises y departamentos a los dropdowns de la ventana
         StartCoroutine(LoadCountries());
         StartCoroutine(LoadRegions());
     }
@@ -33,6 +53,7 @@ public class RegisterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Condicional que revisa si el usuario le dio al boton de atras en celular, o escape en PC, para salirse de la ventana
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (Application.platform == RuntimePlatform.Android)
@@ -47,11 +68,17 @@ public class RegisterScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo que nos lleva a la ventana del login
+    /// </summary>
     void LoginButtonOnClick()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
+    /// <summary>
+    /// Metodo que verifica todos los datos necesarios para registrar un usuario
+    /// </summary>
     void RegisterButtonOnClick()
     {
         bool errorFlag = false;
@@ -65,7 +92,8 @@ public class RegisterScript : MonoBehaviour
         registerMessage.text="";
         try//validations
         {
-            if (emailInput.text != "")//email ****VERIFICAR QUE NO SE REPITA EN LA BASE DE DATOS****
+            #region Validaciones
+            if (emailInput.text != "")
             {
                 try
                 {
@@ -161,6 +189,7 @@ public class RegisterScript : MonoBehaviour
                 dateOfBirthError.text="Año no válido.";
                 errorFlag = true;
             }
+            #endregion
 
             if (!errorFlag)
             {
@@ -185,6 +214,9 @@ public class RegisterScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo se ejecuta cada vez que el pais cambia en el dropdown de paises, para comprobar si la seleccion es "Bolivia", y mostrar los departamentos
+    /// </summary>
     void CountryDropdownOnValueChanged()
     {
         if(countryDropdown.options[countryDropdown.value].text == "Bolivia")
@@ -199,6 +231,19 @@ public class RegisterScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo registra el usuario a la base de datos, con todos los datos dados por dicho usuario
+    /// </summary>
+    /// <param name="email">Correo del usuario</param>
+    /// <param name="password">Contraseña del usuario</param>
+    /// <param name="name">Nombre del usuario</param>
+    /// <param name="firstSurname">Primer apellido del usuario</param>
+    /// <param name="secondSurname">Segundo apellido del usuario</param>
+    /// <param name="day">Dia (Fecha de nacimiento)</param>
+    /// <param name="month">Mes (Fecha de nacimiento)</param>
+    /// <param name="year">Año (Fecha de nacimiento)</param>
+    /// <param name="country">Pais del usuario</param>
+    /// <returns>Retorna el mensaje que da la base de datos, siendo de error o de confirmacion de registrar usuario</returns>
     IEnumerator Register(string email, string password, string name, string firstSurname,
         string secondSurname, string day, string month, string year, string country)
     {
@@ -226,6 +271,20 @@ public class RegisterScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo registra el usuario a la base de datos, con todos los datos dados por dicho usuario
+    /// </summary>
+    /// <param name="email">Correo del usuario</param>
+    /// <param name="password">Contraseña del usuario</param>
+    /// <param name="name">Nombre del usuario</param>
+    /// <param name="firstSurname">Primer apellido del usuario</param>
+    /// <param name="secondSurname">Segundo apellido del usuario</param>
+    /// <param name="day">Dia (Fecha de nacimiento)</param>
+    /// <param name="month">Mes (Fecha de nacimiento)</param>
+    /// <param name="year">Año (Fecha de nacimiento)</param>
+    /// <param name="country">Pais del usuario</param>
+    /// <param name="region">Departamento del usuario (departmento de Bolivia)</param>
+    /// <returns>Retorna el mensaje que da la base de datos, siendo de error o de confirmacion de registrar usuario</returns>
     IEnumerator Register(string email, string password, string name, string firstSurname,
         string secondSurname, string day, string month, string year, string country, string region)
     {
@@ -254,7 +313,13 @@ public class RegisterScript : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         }
     }
-
+    /// <summary>
+    /// Envia al correo electronico la informacion de que la cuenta ha sido creada
+    /// </summary>
+    /// <param name="email">Correo electronico al que se enviara el mensaje</param>
+    /// <param name="name">Nombre del usuario</param>
+    /// <param name="firstname">Primer nombre</param>
+    /// <param name="pswd">La contraseña</param>
     public static void Send(string email, string name, string firstname, string pswd) {
  
         MailMessage mail = new MailMessage();
@@ -275,6 +340,10 @@ public class RegisterScript : MonoBehaviour
         smtp.Send(mail);
     }
 
+    /// <summary>
+    /// Cargar el dropdown del pais con todos los paises de la base de datos
+    /// </summary>
+    /// <returns>Retorna mensaje de la base de datos</returns>
     IEnumerator LoadCountries()
     {
         WWW www = new WWW("https://tourismappar.000webhostapp.com/countries.php");
@@ -290,6 +359,10 @@ public class RegisterScript : MonoBehaviour
         countryDropdown.AddOptions(countriesStringList);
     }
 
+    /// <summary>
+    /// Cargar el dropdown con todos los departamentos de la base de datos
+    /// </summary>
+    /// <returns></returns>
     IEnumerator LoadRegions()
     {
         WWW www = new WWW("https://tourismappar.000webhostapp.com/regions.php");

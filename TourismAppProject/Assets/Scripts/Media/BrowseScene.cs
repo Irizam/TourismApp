@@ -8,6 +8,9 @@ public class BrowseScene : MonoBehaviour
     public string image;
     public string video;
     public string principal;
+    /// <summary>
+    /// Metodo para cargar la ventana de imagnes, video y principal de opciones
+    /// </summary>
     public void LoadSceneImage()
     {
         SceneManager.LoadScene(image);

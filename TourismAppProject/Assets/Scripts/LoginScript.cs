@@ -12,6 +12,18 @@ using System.Security.Cryptography.X509Certificates;
 
 public class LoginScript : MonoBehaviour
 {
+    /// <summary>
+    /// Nombre de la aplicacion: 
+    /// Nombre del desarrollador: Sergio Rodrigo Iriarte Zamorano
+    /// Nombre del desarrollador: Jhonatan Levi Sanga Balcazar
+    /// Fecha de Creacion: ?
+    /// </summary>
+    
+    //<copyright file = "LoginScript.cs" company = "">
+    //
+    //</copyright>
+    //<author>Sergio Rodrigo Iriarte Zamorano</author>
+
     #region Login Window
     [Header("Login Window")]
     public GameObject loginWindow;
@@ -42,6 +54,7 @@ public class LoginScript : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        //Dar accion a los distintos botones de la ventana
         loginButton.onClick.AddListener(LoginButtonOnClick);
         registerButton.onClick.AddListener(RegisterButtonOnClick);
         remindButton.onClick.AddListener(RemindButtonOnClick);
@@ -54,21 +67,27 @@ public class LoginScript : MonoBehaviour
         deleteAccountButton.onClick.AddListener(DeleteAccountButtonOnClick);
         goBackButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
 
+        goBackToMainScreenButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
+
+        //Configurar el tamaño de la pantalla negra que se carga cuando deseamos eliminar un usuario
         float canvasX = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x;
         float canvasY = userWindow.transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.y;
         blackScreen.GetComponent<RectTransform>().sizeDelta = new Vector2(canvasX, canvasY);
         blackScreen.enabled = false;
 
-        goBackToMainScreenButton.onClick.AddListener(GoBackToMainScreenButtonOnClick);
-
+        //Condicional que controla si usuario esta logueado o no, para mostrar la ventana de login o actualizar/eliminar cuenta
         if (PlayerPrefs.GetString("LoginToken") != "") {
+            //Mostrar la ventana del usuario
             loginWindow.SetActive(false);
             userWindow.SetActive(true);
 
+            //Crear una instancia de WWW para comunicar con la base de datos, para obtener cierta informacion de un usuario
             WWWForm form = new WWWForm();
             form.AddField("loginToken", PlayerPrefs.GetString("LoginToken"));
             WWW www = new WWW("https://tourismappar.000webhostapp.com/get_user_data.php", form);
             yield return www;
+            
+            //Recibir los datos concatenados de la base de datos para luego separarles y usarles en los lugares correctos
             string[] userDataStringArray = www.text.Split('|');
             nameInput.text = userDataStringArray[0];
             firstSurnameInput.text = userDataStringArray[1];
@@ -80,6 +99,7 @@ public class LoginScript : MonoBehaviour
         }
         else
         {
+            //Mostrar la ventana del login
             loginWindow.SetActive(true);
             userWindow.SetActive(false);
         }
@@ -88,6 +108,7 @@ public class LoginScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Condicional que revisa si el usuario le dio al boton de atras en celular, o escape en PC, para salirse de la ventana
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (Application.platform == RuntimePlatform.Android)
@@ -101,6 +122,10 @@ public class LoginScript : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// metodo del boton Login con sus respectivas validaciones
+    /// </summary>
 
     void LoginButtonOnClick()
     {
@@ -129,9 +154,13 @@ public class LoginScript : MonoBehaviour
             StartCoroutine(Login(email, password));
         }
     }
-
-    string email="";
-    string vercode="";
+    #region variables globales para el cambio de contraseña
+    string email ="";
+    string codigoVerificacion="";
+    #endregion
+    /// <summary>
+    /// Evento que se activa al hacer click al botoon "olvidaste tu contraseña"
+    /// </summary>
     void RemindButtonOnClick()
     {
         errorEmailMessage.text = "";
@@ -139,40 +168,40 @@ public class LoginScript : MonoBehaviour
         {
             try
             {
-                System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(emailInput.text);
-
+                System.Net.Mail.MailAddress m = new System.Net.Mail.MailAddress(emailInput.text);//verificar que el formato del correo sea el correcto
             }
             catch (System.Exception)
             {
                 errorEmailMessage.text = "Formato incorrecto.";
             }
-            email = emailInput.text;
+            email = emailInput.text;//capturar el email
             
-            SendMail(email);
+            SendMail(email);//enviar un mensaje al correo con el codigo de verificacion
 
             loginMessage.text="Revise el correo que ingresó";
 
-            confirmButtonField.SetActive(true);
+            confirmButtonField.SetActive(true);//activar el boton para confirmar el cambio de contraseña
         }
         else
         {
             errorEmailMessage.text = "Ingrese el correo.";
         }
     }
-
+    /// <summary>
+    /// Evento que se activa al hacer click en el boton de confimacion de cambio de contraseña
+    /// </summary>
     void ConfirmButtonOnClick()
     {
-        if (emailInput.text == vercode)
+        if (emailInput.text == codigoVerificacion)//el codigo ingresado y el generado son los mismos?
         {
-            if(passwordInput.text!="" && passwordInput.text.Length >= 8 && passwordInput.text.Length <= 20)
+            if(passwordInput.text!="" && passwordInput.text.Length >= 8 && passwordInput.text.Length <= 20)//validacion de la contraseña
             {
-                StartCoroutine(UpdatePswdAndSendEmail(email, passwordInput.text));
+                StartCoroutine(UpdatePswdAndSendEmail(email, passwordInput.text));//enviar el email de confirmacion y cambiar la contraseña
             }
             else
             {
                 errorPasswordMessage.text="contraseña invalida";
             }
-
         }
         else
         {
@@ -180,11 +209,17 @@ public class LoginScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo nos lleva a la venta de registrar usuario
+    /// </summary>
     void RegisterButtonOnClick()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 
+    /// <summary>
+    /// Este metodo nos lleva a la ventana principal, o se sale de la opcion de eliminar usuario
+    /// </summary>
     void GoBackToMainScreenButtonOnClick()
     {
         if(!isDeleteUserWindowOpen)
@@ -196,6 +231,9 @@ public class LoginScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo revisa si se esta insertando los datos correctos de un usuario, para luego actualizarlo
+    /// </summary>
     void UpdateUserOnClick()
     {
         Regex rgx = new Regex(@"^[ a-zA-Z]{1,60}$");
@@ -252,70 +290,87 @@ public class LoginScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo cierra sesion del usuario logueado, y le dirige a la ventana principal
+    /// </summary>
     void LogoutButtonOnClick()
     {
         PlayerPrefs.SetString("LoginToken", "");
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
+    /// <summary>
+    /// Este metodo muestra una alerta para eliminar usuario o no
+    /// </summary>
     void DeleteButtonOnClick()
     {
         isDeleteUserWindowOpen = true;
         blackScreen.enabled = true;
     }
 
+    /// <summary>
+    /// Este metodo inicia el metodo para eliminar el usuario
+    /// </summary>
     void DeleteAccountButtonOnClick()
     {
         StartCoroutine(DeleteUser());
     }
 
-    
+    /// <summary>
+    /// Llama al metodo Send adjuntando un numero aleatorio de 6 cifras
+    /// </summary>
+    /// <param name="email">Correo electronico al que se enviara el mensaje</param>
     void SendMail(string email)
     {
         
         System.Random random=new System.Random();
-        vercode=random.Next(100000,999999) + "";
+        codigoVerificacion=random.Next(100000,999999) + "";//generar numeroa de 6 cifras
 
-
-        Send(email, vercode);
-
+        Send(email, codigoVerificacion);//llamar al metodo Send
     }
+    /// <summary>
+    /// Actualiza la contraseña del usuario y le envia un correo hacendole saber que se ha actualizado
+    /// </summary>
+    /// <param name="email">Correo electronico al que se enviara el mensaje</param>
+    /// <param name="newPswd">La nueva contraseña</param>
+    /// <returns></returns>
     IEnumerator UpdatePswdAndSendEmail(string email, string newPswd)
     {
-        
         WWWForm form = new WWWForm();
         form.AddField("email", email);
         form.AddField("pswd", newPswd);
-        WWW www = new WWW("https://tourismappar.000webhostapp.com/update_password.php", form);
+        WWW www = new WWW("https://tourismappar.000webhostapp.com/update_password.php", form);//llamada a la base de datos
         yield return www;
-        if(www.text=="success")
+        if(www.text=="success")//consulta en la base de datos exitosa
         {
+            SendSuccessEmail(email, newPswd);//enviar el correo
 
-        SendSuccessEmail(email, newPswd);
-
-        loginMessage.text="Se actualizó correctamente";
-        vercode="";
-        passwordInput.text="";
-        emailInput.text="";
-        email="";
+            loginMessage.text="Se actualizó correctamente";//hacer saber el cambio de contraseña mediante la interfaz
+            codigoVerificacion="";
+            passwordInput.text="";
+            emailInput.text="";
+            email="";
         
-        confirmButtonField.SetActive(false);
+            confirmButtonField.SetActive(false);//desactivar el boton de confirmacion
         }
         else
         {
         loginMessage.text="nope";
         }
-
-
     }
-
-    public static void Send(string email, string vercod) {
+    /// <summary>
+    /// Envia un correo electronico al email especificado con el codigo de verificacion para el cambio de contraseña
+    /// </summary>
+    /// <param name="email">Correo electronico al que se enviara el mensaje</param>
+    /// <param name="verCod">El codigo de verificacion</param>
+    public static void Send(string email, string verCod) {
  
+        //configuracion del objeto mail para el envio de correo
         MailMessage mail = new MailMessage();
         mail.From = new MailAddress("TourismAppAR@gmail.com");
         mail.To.Add(email);
         mail.Subject = "Recordar contraseña";
-        mail.Body = "Introduzca el codigo " + vercod+" en el campo de Correo Electronico y su nueva contraseña en el campo de contraseña, luego presione Confirmar";
+        mail.Body = "Introduzca el codigo " + verCod+" en el campo de Correo Electronico y su nueva contraseña en el campo de contraseña, luego presione Confirmar";
  
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
         smtp.Port = 587;
@@ -326,10 +381,16 @@ public class LoginScript : MonoBehaviour
                 delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
                     return true;
                 };
-        smtp.Send(mail);
+        smtp.Send(mail);//envio de correo
     }
+    /// <summary>
+    /// envia al correo especificado la infomacion de que su contraseña se ha actualizado
+    /// </summary>
+    /// <param name="email">Correo al que se enviara el mensaje</param>
+    /// <param name="newPswd">La nueva contraseña</param>
     public static void SendSuccessEmail(string email, string newPswd) {
  
+        //configuracion del objeto mail para el envio de correo
         MailMessage mail = new MailMessage();
         mail.From = new MailAddress("TourismAppAR@gmail.com");
         mail.To.Add(email);
@@ -345,9 +406,15 @@ public class LoginScript : MonoBehaviour
                 delegate(object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
                     return true;
                 };
-        smtp.Send(mail);
+        smtp.Send(mail);//envio del correo
     }
 
+    /// <summary>
+    /// Este metodo es el que recibe los datos del correo y contraseña, para verificar que su cuenta existe en la base de datos, y loguearle
+    /// </summary>
+    /// <param name="email">Correo dado por el usuario</param>
+    /// <param name="password">Contraseña dado por el usuario</param>
+    /// <returns>Retorna un mensaje de la base de datos, confirmando que se ejecuto la consulta, o lanzar error</returns>
     IEnumerator Login(string email, string password)
     {
         WWWForm form = new WWWForm();
@@ -369,6 +436,13 @@ public class LoginScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Este metodo actualiza el usuario en la base de datos. En este caso, el nombre completo del usuario.
+    /// </summary>
+    /// <param name="firstName">El nombre del usuario</param>
+    /// <param name="firstSurname">El primer apellido del usuario</param>
+    /// <param name="secondSurname">El segundo apellido del usuario (no requerido)</param>
+    /// <returns>Retorna un mensaje de la base de datos, confirmando que se ejecuto la consulta, o lanzar error</returns>
     IEnumerator UpdateUser(string firstName, string firstSurname, string secondSurname)
     {
         WWWForm form = new WWWForm();
@@ -380,6 +454,10 @@ public class LoginScript : MonoBehaviour
         yield return www;
     }
 
+    /// <summary>
+    /// Este metodo elimina el usuario de la base de datos (eliminacion logica)
+    /// </summary>
+    /// <returns>Retorna un mensaje de la base de datos, confirmando que se ejecuto la consulta, o lanzar error</returns>
     IEnumerator DeleteUser()
     {
         WWWForm form = new WWWForm();
@@ -391,9 +469,13 @@ public class LoginScript : MonoBehaviour
             PlayerPrefs.SetString("LoginToken", "");
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
-        Debug.Log(www.text);
     }
 
+    /// <summary>
+    /// Este metodo ejecuta el metodo que muestra un mensaje recibido de la base de datos
+    /// </summary>
+    /// <param name="text">Mensaje recibido de la base de datos, siendo de confirmacion o de error</param>
+    /// <param name="duration">Tiempo (en segundos) que tardara el mensaje en estar en la pantalla, antes de desaparecer</param>
     void ShowToast(string text, int duration)
     {
         if (showToastCoroutine != null)
@@ -404,6 +486,12 @@ public class LoginScript : MonoBehaviour
         StartCoroutine(showToastCoroutine);
     }
 
+    /// <summary>
+    /// Este metodo carga el mensaje en la pantalla
+    /// </summary>
+    /// <param name="text">Mensaje recibido de la base de datos, siendo de confirmacion o de error</param>
+    /// <param name="duration">Tiempo (en segundos) que tardara el mensaje en estar en la pantalla, antes de desaparecer</param>
+    /// <returns></returns>
     private IEnumerator ShowToastCoroutineMet(string text, int duration)
     {
         loginMessage.text = text;
@@ -427,6 +515,13 @@ public class LoginScript : MonoBehaviour
         loginMessage.enabled = false;
     }
 
+    /// <summary>
+    /// Este metodo ejecuta el contador, mientras que este mostrando el mensaje, para saber cuanto tiempo falta antes de desvanecerse
+    /// </summary>
+    /// <param name="targetText">Un elemento UI para reemplazar los atributos de color sobre este elementos</param>
+    /// <param name="fadeIn">Booleano que verifica si debe mostrar el mensaje, u ocultarlo</param>
+    /// <param name="duration">El contador, para determinar cuanto tiempo mas falta para quitar el mensaje</param>
+    /// <returns></returns>
     IEnumerator FadeInAndOut(Text targetText, bool fadeIn, float duration)
     {
         float a, b;
@@ -454,6 +549,11 @@ public class LoginScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo que reemplaza el mes dado en formato de numero, a su valor textual 
+    /// </summary>
+    /// <param name="monthInInt">El numero del mes</param>
+    /// <returns></returns>
     string GetMonthInString(string monthInInt)
     {
         string monthInString = "";

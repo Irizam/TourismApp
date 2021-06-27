@@ -7,7 +7,10 @@ public class GetComments : MonoBehaviour
 {
     public Text commentMessage;
     // Start is called before the first frame update
-
+    /// <summary>
+    /// Metodo start lectura de comentarios
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Start()
     {
         //Hagarra los comentarios de la base de datos 

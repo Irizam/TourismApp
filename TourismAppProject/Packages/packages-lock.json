@@ -1,18 +1,12 @@
 {
   "dependencies": {
     "com.easyar.sense": {
-      "version": "file:D:/proyecto sistemas/Easy Ar/package",
+      "version": "file:C:/Users/alex_/Downloads/Easy Ar/Easy Ar/package",
       "depth": 0,
       "source": "local",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       }
-    },
-    "com.unity.2d.sprite": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {}
     },
     "com.unity.collab-proxy": {
       "version": "1.3.9",
