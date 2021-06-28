@@ -34,20 +34,20 @@ public class RegisterScript : MonoBehaviour
     void Start()
     {
         //Dar el accion "onClick" a los botones del UI
-        loginButton.onClick.AddListener(LoginButtonOnClick);
-        registerButton.onClick.AddListener(RegisterButtonOnClick);
+        loginButton.onClick.AddListener(Login_Button_OnClick);
+        registerButton.onClick.AddListener(Register_Button_OnClick);
 
         //Dar el accion "onValueChanged" al dropdown de pais
         countryDropdown.onValueChanged.AddListener(delegate {
-            CountryDropdownOnValueChanged();
+            Country_Dropdown_OnValueChanged();
         });
 
         //Cambiar el formato de los UI de contraseña para que no se pueda ver la contraseña
         passwordInput.inputType = repeatPasswordInput.inputType = InputField.InputType.Password;
 
         //Carga los distintos paises y departamentos a los dropdowns de la ventana
-        StartCoroutine(LoadCountries());
-        StartCoroutine(LoadRegions());
+        StartCoroutine(Load_Countries());
+        StartCoroutine(Load_Regions());
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class RegisterScript : MonoBehaviour
     /// <summary>
     /// Metodo que nos lleva a la ventana del login
     /// </summary>
-    void LoginButtonOnClick()
+    void Login_Button_OnClick()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
@@ -79,7 +79,7 @@ public class RegisterScript : MonoBehaviour
     /// <summary>
     /// Metodo que verifica todos los datos necesarios para registrar un usuario
     /// </summary>
-    void RegisterButtonOnClick()
+    void Register_Button_OnClick()
     {
         bool errorFlag = false;
         emailError.text="";
@@ -90,7 +90,7 @@ public class RegisterScript : MonoBehaviour
         secondSurnameError.text="";
         dateOfBirthError.text="";
         registerMessage.text="";
-        try//validations
+        try //validations
         {
             #region Validaciones
             if (emailInput.text != "")
@@ -217,7 +217,7 @@ public class RegisterScript : MonoBehaviour
     /// <summary>
     /// Este metodo se ejecuta cada vez que el pais cambia en el dropdown de paises, para comprobar si la seleccion es "Bolivia", y mostrar los departamentos
     /// </summary>
-    void CountryDropdownOnValueChanged()
+    void Country_Dropdown_OnValueChanged()
     {
         if(countryDropdown.options[countryDropdown.value].text == "Bolivia")
         {
@@ -344,7 +344,7 @@ public class RegisterScript : MonoBehaviour
     /// Cargar el dropdown del pais con todos los paises de la base de datos
     /// </summary>
     /// <returns>Retorna mensaje de la base de datos</returns>
-    IEnumerator LoadCountries()
+    IEnumerator Load_Countries()
     {
         WWW www = new WWW("https://tourismappar.000webhostapp.com/countries.php");
         yield return www;
@@ -363,7 +363,7 @@ public class RegisterScript : MonoBehaviour
     /// Cargar el dropdown con todos los departamentos de la base de datos
     /// </summary>
     /// <returns></returns>
-    IEnumerator LoadRegions()
+    IEnumerator Load_Regions()
     {
         WWW www = new WWW("https://tourismappar.000webhostapp.com/regions.php");
         yield return www;

@@ -492,7 +492,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: GotoPlace
+        m_MethodName: Go_To_Place
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1372,7 +1372,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: moveEjeYBot
+        m_MethodName: Move_Y_Axis_Bottom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1794,7 +1794,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: moveEjeXIzq
+        m_MethodName: Move_X_Axis_To_Left
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2002,8 +2002,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1700386446}
-        m_TargetAssemblyTypeName: buttonScrip, Assembly-CSharp
-        m_MethodName: zoomToPlaceMenos
+        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
+        m_MethodName: Zoom_Out_Of_Place
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2136,7 +2136,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: ZoomMenosButton
+        m_MethodName: Zoom_Out_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2578,7 +2578,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 488489250}
         m_TargetAssemblyTypeName: MoreOptionsScript, Assembly-CSharp
-        m_MethodName: BUTTON_Login
+        m_MethodName: Login_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2946,7 +2946,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1138535657}
         m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
-        m_MethodName: enviarID
+        m_MethodName: Enviar_ID
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3174,7 +3174,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 488489250}
         m_TargetAssemblyTypeName: MoreOptionsScript, Assembly-CSharp
-        m_MethodName: BUTTON_AR
+        m_MethodName: AR_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3367,6 +3367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d1a80da3bf3ba4f9081f87f87d7238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distancia: 0
+  globalCounter: 0
+  inPlace: 0
 --- !u!1 &1312481132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3858,7 +3861,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: moveEjeYTop
+        m_MethodName: Move_Y_Axis_Top
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4145,7 +4148,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: moveEjeXDer
+        m_MethodName: Move_X_Axis_To_Right
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4277,7 +4280,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 488489250}
         m_TargetAssemblyTypeName: MoreOptionsScript, Assembly-CSharp
-        m_MethodName: BUTTON_Sub_Menu
+        m_MethodName: Sub_Menu_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5207,6 +5210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d1a80da3bf3ba4f9081f87f87d7238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distancia: 0
+  globalCounter: 0
+  inPlace: 0
 --- !u!4 &1907068093
 Transform:
   m_ObjectHideFlags: 0
@@ -5306,7 +5312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1301075887}
         m_TargetAssemblyTypeName: NavegateScript, Assembly-CSharp
-        m_MethodName: ZoomMasButton
+        m_MethodName: Zoom_In_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5517,8 +5523,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1700386446}
-        m_TargetAssemblyTypeName: buttonScrip, Assembly-CSharp
-        m_MethodName: zoomToPlaceMas
+        m_TargetAssemblyTypeName: ButtonScript, Assembly-CSharp
+        m_MethodName: Zoom_In_To_Place
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

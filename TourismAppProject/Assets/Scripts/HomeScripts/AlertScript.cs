@@ -4,11 +4,12 @@ using UnityEngine;
 using System;
 using System.Globalization;
 
-public class Alert : MonoBehaviour
+public class AlertScript : MonoBehaviour
 {
     public double distancia;
     double lat1 = -17.389700, lat2 = -17.393534, long1 = -66.155487, long2 = -66.145418;
     public List<Tuple<double, double>> spotList = new List<Tuple<double, double>>();
+   
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -21,9 +22,9 @@ public class Alert : MonoBehaviour
         {
             //llenamos la lista spotList con las latitudes y longitudes de cada lugar
             spotList.Add(new Tuple<double, double>(double.Parse(latLongArray[i].Replace(',', '.'), CultureInfo.InvariantCulture), double.Parse(latLongArray[i + 1].Replace(',', '.'), CultureInfo.InvariantCulture)));
-            //Debug.Log(double.Parse(latLongArray[i].Replace(',', '.'), CultureInfo.InvariantCulture) + " , " + double.Parse(latLongArray[i + 1].Replace(',', '.'), CultureInfo.InvariantCulture) );
         }
     }
+    
     static class DistanceAlgorithm
     {
         const double PIx = 3.141592653589793;
@@ -47,11 +48,7 @@ public class Alert : MonoBehaviour
         /// <param name="lon2"></param>
         /// <param name="lat2"></param>
         /// <returns></returns>
-        public static double DistanceBetweenPlaces(
-            double lon1,
-            double lat1,
-            double lon2,
-            double lat2)
+        public static double DistanceBetweenPlaces(double lon1, double lat1, double lon2, double lat2)
         {
             double dlon = Radians(lon2 - lon1);
             double dlat = Radians(lat2 - lat1);
@@ -93,6 +90,4 @@ public class Alert : MonoBehaviour
             inPlace = false;
         }
     }
-
 }
-

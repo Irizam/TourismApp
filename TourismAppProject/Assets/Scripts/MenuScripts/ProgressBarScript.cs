@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 [ExecuteInEditMode()]
 
-public class ProguessBar : MonoBehaviour
+public class ProgressBarScript : MonoBehaviour
 {
-    
-
     /// <summary>
     /// Declaracion de variables de los proguess bar e imagenes
     /// </summary>
@@ -35,10 +33,7 @@ public class ProguessBar : MonoBehaviour
     private double average;
 
     //almacena los datos recaudados 
-
     private string Cadena;
-
-
 
     /// <summary>
     /// Logica para la puntuacion y registrarlo a la BDD
@@ -47,7 +42,6 @@ public class ProguessBar : MonoBehaviour
     /// <returns></returns>
     IEnumerator SelectAllScore()
     {
-
         string idTouristSpot = PlayerPrefs.GetString("SpotID"); ;
 
         WWWForm form = new WWWForm();
@@ -71,13 +65,10 @@ public class ProguessBar : MonoBehaviour
         currentPB5 = int.Parse(valores[5]);
 
         //es la formula para el promedio de todos los datos
-
         average =(5 * currentPB5 + 4 * currentPB4 + 3 * currentPB3 + 2 * currentPB2 + 1 * currentPB1) / (currentPB5 + currentPB4 + currentPB3 + currentPB2 + currentPB1);
         //media total
         Calification.text = average.ToString();
     }
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -85,20 +76,15 @@ public class ProguessBar : MonoBehaviour
         StartCoroutine(SelectAllScore());
     }
 
-
     // Update is called once per frame
     void Update()
-    {       
-
+    {
         GetCurrentFill1();
         GetCurrentFill2();
         GetCurrentFill3();
         GetCurrentFill4();
         GetCurrentFill5();
-        
     }
-
-
 
     /// <summary>
     /// Logica para el llenado de los proguess bar
@@ -135,5 +121,4 @@ public class ProguessBar : MonoBehaviour
         mask5.fillAmount = fillAmount;
     }
     #endregion
-
 }

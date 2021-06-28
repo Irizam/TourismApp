@@ -1,31 +1,20 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class ButtonAcction : MonoBehaviour
+public class ARScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void returnMenuHome ()
+    public void Return_To_Home()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
-    public void goToMedia()
+
+    public void Go_To_Media()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(7);
     }
 
-    public void goToValidation()
+    public void Go_To_Validation()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(4);
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class ChangePassword : MonoBehaviour
+public class ChangePasswordScript : MonoBehaviour
 {
     [SerializeField]
     public Button executeButton, backButton;
@@ -12,11 +12,11 @@ public class ChangePassword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        executeButton.onClick.AddListener(ChangePassButtonOnClick);
-        backButton.onClick.AddListener(BackButtonOnClick);
+        executeButton.onClick.AddListener(Change_Password_Button_OnClick);
+        backButton.onClick.AddListener(Go_Back_Button_OnClick);
     }
 
-    void ChangePassButtonOnClick()
+    void Change_Password_Button_OnClick()
     {
         errorMessage1.text = "";
         errorMessage2.text = "";
@@ -26,7 +26,6 @@ public class ChangePassword : MonoBehaviour
             errorMessage1.text = "Contraseña actual requerida.";
             flag = true;
         }
-
         if (newPassInput.text != "")
         {
             if (newPassInput.text.Length < 8)
@@ -40,7 +39,6 @@ public class ChangePassword : MonoBehaviour
             errorMessage2.text = "Nueva contraseña requerida.";
             flag = true;
         }
-
         if (repeatNewPassInput.text != "")//repeat password
         {
             if (repeatNewPassInput.text != newPassInput.text)
@@ -67,7 +65,6 @@ public class ChangePassword : MonoBehaviour
 
         IEnumerator ChangePassword(string oldPassword, string newPassword, string tokenLogin)
         {
-
             WWWForm form = new WWWForm();
             form.AddField("oldPassword", oldPassword);
             form.AddField("newPassword", newPassword);
@@ -79,18 +76,12 @@ public class ChangePassword : MonoBehaviour
             else
             {
                 if (www.text == "rechazado") errorMessage2.text = "Contraseña actual errónea, intente de nuevo.";
-                else
-                {
-                    errorMessage2.text = www.text;
-                }
+                else errorMessage2.text = www.text;
             }
-
-
         }
-
     }
 
-    void BackButtonOnClick()
+    void Go_Back_Button_OnClick()
     {
         try
         {
@@ -104,8 +95,6 @@ public class ChangePassword : MonoBehaviour
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             }
         }
-        catch (UnityException ex)
-        { Application.Quit(); }
-        
+        catch (UnityException ex) { Application.Quit(); }
     }
 }

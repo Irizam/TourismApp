@@ -1051,8 +1051,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1844593227}
-        m_TargetAssemblyTypeName: ButtonAcction, Assembly-CSharp
-        m_MethodName: goToValidation
+        m_TargetAssemblyTypeName: ARScript, Assembly-CSharp
+        m_MethodName: Go_To_Validation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1600,10 +1600,10 @@ RectTransform:
   m_Father: {fileID: 651443536}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -429, y: -892.34}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 115, y: 115}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747237734
 MonoBehaviour:
@@ -1650,8 +1650,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1844593227}
-        m_TargetAssemblyTypeName: ButtonAcction, Assembly-CSharp
-        m_MethodName: returnMenuHome
+        m_TargetAssemblyTypeName: ARScript, Assembly-CSharp
+        m_MethodName: Return_To_Home
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2425,8 +2425,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1844593227}
-        m_TargetAssemblyTypeName: ButtonAcction, Assembly-CSharp
-        m_MethodName: goToMedia
+        m_TargetAssemblyTypeName: ARScript, Assembly-CSharp
+        m_MethodName: Go_To_Media
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GetComments : MonoBehaviour
+public class GetCommentsScript : MonoBehaviour
 {
     public Text commentMessage;
-    // Start is called before the first frame update
+
     /// <summary>
     /// Metodo start lectura de comentarios
     /// </summary>
     /// <returns></returns>
     IEnumerator Start()
     {
-        //Hagarra los comentarios de la base de datos 
+        //Agarra los comentarios de la base de datos 
         WWWForm form = new WWWForm();
 
         string idTouristSpot = PlayerPrefs.GetString("SpotID"); ;
@@ -29,11 +29,5 @@ public class GetComments : MonoBehaviour
             get_comments = get_comments + commentsa[i] + "\n";
         }
         commentMessage.text = get_comments;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

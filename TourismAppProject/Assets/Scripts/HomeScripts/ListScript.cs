@@ -6,21 +6,16 @@ using UnityEngine.UI;
 
 public class ListScript : MonoBehaviour
 {
-    #region DeclaracionVariables
+    #region Variables
     public GameObject g;
     string idString;
     #endregion
 
-
     // Start is called before the first frame update  
-
-
     void Start() 
     {
         //Activa el metodo places()
         StartCoroutine(Places());
-        
-
     }
 
     // Update is called once per frame
@@ -40,23 +35,19 @@ public class ListScript : MonoBehaviour
             }
         }
     }
+
     /// <summary>
     /// Este metodo se conecta con el host y busca la cantidad de lugares registrados en la base de datos
     /// Luego utlizando un ciclo for genera un objeto con el tipo de variable gameobject para poder generar un boton con los datos encontrados en otra consulta con la base datos
-    /// /// </summary>
-    
+    /// </summary>
     IEnumerator Places()
     {
-     
-
         WWW www = new WWW("https://tourismappar.000webhostapp.com/spotID.php");
         yield return www;
         GameObject buttonTemplate = transform.GetChild(0).gameObject;
-     
         int quantity = int.Parse(www.text);
         for (int i = 1; i <= quantity; i++)
         {
-            
             g = Instantiate(buttonTemplate, transform);
             g.name = i.ToString();            
             g.AddComponent<ButtonScript>();
@@ -68,14 +59,7 @@ public class ListScript : MonoBehaviour
             Debug.Log(www1.text);
             Debug.Log("--- " + g.tag + " ---");
             g.transform.GetChild(0).GetComponent<Text>().text =idString;
-           
         }
-
         Destroy(buttonTemplate);
     }
-
- 
-   
-
-
 }
