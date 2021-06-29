@@ -43,17 +43,17 @@ public class CommentScript : MonoBehaviour
         if (idClient!="0")
         {
             commentMessage.text = "";
-            Regex rgx = new Regex(@"^[a-zA-Z]{1,60}$");
+            Regex rgx = new Regex(@"^[a-zA-Z ]{1,60}$");
 
             string comment = commentInput.text, idTouristSpot = PlayerPrefs.GetString("SpotID"); 
-            if (!rgx.IsMatch(comment))
+            if (rgx.IsMatch(comment))
             {
                 StartCoroutine(RegisterComment(comment, idClient, idTouristSpot));
                 commentInput.text = "";
             }
             else
             {
-                commentMessage.text = "Solo se permiten letras y números";
+                commentMessage.text = "Solo se permiten letras, por favor";
             }
         }
         else

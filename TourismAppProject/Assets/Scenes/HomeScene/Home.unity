@@ -236,9 +236,9 @@ RectTransform:
   m_Father: {fileID: 1990432311}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -66, y: -77}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -66, y: 77}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63837999
@@ -441,9 +441,9 @@ RectTransform:
   m_Father: {fileID: 1990432311}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -272.7, y: -77}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -272.7, y: 77}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &143051004
@@ -4506,10 +4506,10 @@ MonoBehaviour:
   buttonNategation: {fileID: 0}
   logoApp: {fileID: 0}
   buttonAr: {fileID: 0}
-  textoLat: {fileID: 0}
-  textoLog: {fileID: 0}
+  textoLat: {fileID: 1656802705}
+  textoLog: {fileID: 1892921996}
   zomt: 16
-  imgmap: {fileID: 0}
+  imgmap: {fileID: 118575495}
   latitudePlace: 
   longitudePlace: 
   lat: 
@@ -4568,9 +4568,9 @@ RectTransform:
   m_Father: {fileID: 1990432311}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 146.4, y: -77}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 146.4, y: 77}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1730826113

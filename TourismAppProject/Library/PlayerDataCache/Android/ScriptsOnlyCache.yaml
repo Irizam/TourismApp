@@ -1,24 +1,25 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - Alert
-    - BrowseScene
-    - BtnCalificacion
+    - ARScript
+    - AlertScript
+    - BrowseSceneScript
+    - ButtonScript
     - CommentScript
-    - GetComments
+    - GetCommentsScript
+    - ImageMenuScript
     - ListScript
     - LoginScript
+    - MediaSceneScript
     - Menu1Script
-    - Menu2ButtonsStar
+    - Menu2ButtonsStarScript
     - MoreOptionsScript
     - NavegateScript
-    - ProguessBar
+    - ProgressBarScript
     - RegisterScript
-    - SceneScriptMedia
-    - ScriptImageMenu
-    - SplashScreen
+    - ScoreButtonScript
+    - SplashScreenScript
     - UrlManager
-    - buttonScrip
     EasyAR.Sense.dll:
     - easyar.ARSession
     - easyar.CameraImageRenderer
@@ -62,562 +63,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
-    Assets/Scenes/Home/Home.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 84
-      Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 656}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1516}
-    - Class: 114
-      Script: {instanceID: 1672}
-    - Class: 114
-      Script: {instanceID: 1784}
-    - Class: 114
-      Script: {instanceID: 1932}
-    - Class: 114
-      Script: {instanceID: 2348}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2540}
-    - Class: 114
-      Script: {instanceID: 2710}
-    - Class: 114
-      Script: {instanceID: 2736}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 2876}
-    - Class: 114
-      Script: {instanceID: 2936}
-    - Class: 114
-      Script: {instanceID: 3022}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3080}
-    - Class: 114
-      Script: {instanceID: 3158}
-    - Class: 114
-      Script: {instanceID: 3252}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3484}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3640}
-    - Class: 114
-      Script: {instanceID: 3692}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 114
-      Script: {instanceID: 3874}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Home/MediaMenu.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1784}
-    - Class: 114
-      Script: {instanceID: 1932}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2540}
-    - Class: 114
-      Script: {instanceID: 2736}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 2850}
-    - Class: 114
-      Script: {instanceID: 3022}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3080}
-    - Class: 114
-      Script: {instanceID: 3264}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Home/MediaPrincipal.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1784}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 2866}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Home/VideoMenu.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1784}
-    - Class: 114
-      Script: {instanceID: 1932}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 2850}
-    - Class: 114
-      Script: {instanceID: 3022}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3080}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 114
-      Script: {instanceID: 3912}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/LoginScreen.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 2982}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3360}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Menu1.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1542}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Menu2.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1542}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2680}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3320}
-    - Class: 114
-      Script: {instanceID: 3360}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/Menu3.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1542}
-    - Class: 114
-      Script: {instanceID: 1600}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2532}
-    - Class: 114
-      Script: {instanceID: 2572}
-    - Class: 114
-      Script: {instanceID: 2736}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 2878}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3650}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/RegisterScreen.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1726}
-    - Class: 114
-      Script: {instanceID: 2274}
-    - Class: 114
-      Script: {instanceID: 2372}
-    - Class: 114
-      Script: {instanceID: 2532}
-    - Class: 114
-      Script: {instanceID: 2736}
-    - Class: 114
-      Script: {instanceID: 2826}
-    - Class: 114
-      Script: {instanceID: 3032}
-    - Class: 114
-      Script: {instanceID: 3282}
-    - Class: 114
-      Script: {instanceID: 3354}
-    - Class: 114
-      Script: {instanceID: 3360}
-    - Class: 114
-      Script: {instanceID: 3634}
-    - Class: 114
-      Script: {instanceID: 3650}
-    - Class: 114
-      Script: {instanceID: 3782}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/ARScene/ARScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -647,40 +93,599 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1492}
+      Script: {instanceID: 1466}
     - Class: 114
-      Script: {instanceID: 1752}
+      Script: {instanceID: 1972}
     - Class: 114
-      Script: {instanceID: 2358}
+      Script: {instanceID: 2568}
     - Class: 114
-      Script: {instanceID: 2372}
+      Script: {instanceID: 2580}
     - Class: 114
-      Script: {instanceID: 2412}
+      Script: {instanceID: 2618}
     - Class: 114
-      Script: {instanceID: 2554}
-    - Class: 114
-      Script: {instanceID: 2826}
+      Script: {instanceID: 2760}
     - Class: 114
       Script: {instanceID: 3032}
     - Class: 114
-      Script: {instanceID: 3268}
+      Script: {instanceID: 3236}
     - Class: 114
-      Script: {instanceID: 3282}
+      Script: {instanceID: 3468}
     - Class: 114
-      Script: {instanceID: 3312}
+      Script: {instanceID: 3482}
     - Class: 114
-      Script: {instanceID: 3408}
+      Script: {instanceID: 3512}
     - Class: 114
-      Script: {instanceID: 3612}
+      Script: {instanceID: 3606}
     - Class: 114
-      Script: {instanceID: 3634}
+      Script: {instanceID: 3638}
     - Class: 114
-      Script: {instanceID: 3782}
+      Script: {instanceID: 3810}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/HomeScene/Home.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 630}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 1738}
+    - Class: 114
+      Script: {instanceID: 1892}
+    - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
+      Script: {instanceID: 2150}
+    - Class: 114
+      Script: {instanceID: 2558}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 2746}
+    - Class: 114
+      Script: {instanceID: 2916}
+    - Class: 114
+      Script: {instanceID: 2942}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3080}
+    - Class: 114
+      Script: {instanceID: 3140}
+    - Class: 114
+      Script: {instanceID: 3226}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3284}
+    - Class: 114
+      Script: {instanceID: 3358}
+    - Class: 114
+      Script: {instanceID: 3452}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3558}
+    - Class: 114
+      Script: {instanceID: 3684}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3838}
+    - Class: 114
+      Script: {instanceID: 3890}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 114
+      Script: {instanceID: 4072}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/LoginRegisterScenes/LoginScreen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3186}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3558}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/LoginRegisterScenes/RegisterScreen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 1946}
+    - Class: 114
+      Script: {instanceID: 2484}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 2738}
+    - Class: 114
+      Script: {instanceID: 2942}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3552}
+    - Class: 114
+      Script: {instanceID: 3558}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3848}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MediaScenes/MediaPrincipal.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3070}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MediaScenes/MediaVideoMenuScreen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
+      Script: {instanceID: 2150}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 2746}
+    - Class: 114
+      Script: {instanceID: 2942}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3054}
+    - Class: 114
+      Script: {instanceID: 3226}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3284}
+    - Class: 114
+      Script: {instanceID: 3464}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MediaScenes/VideoScreen.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 2004}
+    - Class: 114
+      Script: {instanceID: 2150}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3054}
+    - Class: 114
+      Script: {instanceID: 3226}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3284}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 114
+      Script: {instanceID: 4110}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MenuScenes/Menu1.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 1764}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MenuScenes/Menu2.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 1764}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 2886}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3520}
+    - Class: 114
+      Script: {instanceID: 3558}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/MenuScenes/Menu3.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1466}
+    - Class: 114
+      Script: {instanceID: 1764}
+    - Class: 114
+      Script: {instanceID: 1822}
+    - Class: 114
+      Script: {instanceID: 2580}
+    - Class: 114
+      Script: {instanceID: 2738}
+    - Class: 114
+      Script: {instanceID: 2778}
+    - Class: 114
+      Script: {instanceID: 2942}
+    - Class: 114
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3082}
+    - Class: 114
+      Script: {instanceID: 3236}
+    - Class: 114
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
+    - Class: 114
+      Script: {instanceID: 3848}
+    - Class: 114
+      Script: {instanceID: 3980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -714,19 +719,19 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 2372}
+      Script: {instanceID: 2580}
     - Class: 114
-      Script: {instanceID: 2540}
-    - Class: 114
-      Script: {instanceID: 2826}
+      Script: {instanceID: 2746}
     - Class: 114
       Script: {instanceID: 3032}
     - Class: 114
-      Script: {instanceID: 3174}
+      Script: {instanceID: 3236}
     - Class: 114
-      Script: {instanceID: 3282}
+      Script: {instanceID: 3374}
     - Class: 114
-      Script: {instanceID: 3634}
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -761,19 +766,19 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 2372}
+      Script: {instanceID: 2580}
     - Class: 114
-      Script: {instanceID: 2540}
-    - Class: 114
-      Script: {instanceID: 2826}
+      Script: {instanceID: 2746}
     - Class: 114
       Script: {instanceID: 3032}
     - Class: 114
-      Script: {instanceID: 3174}
+      Script: {instanceID: 3236}
     - Class: 114
-      Script: {instanceID: 3282}
+      Script: {instanceID: 3374}
     - Class: 114
-      Script: {instanceID: 3634}
+      Script: {instanceID: 3482}
+    - Class: 114
+      Script: {instanceID: 3832}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1172,7 +1177,7 @@ ScriptsOnlyBuild:
       Hash: 1740c41b164e07583bce3e8670b04ba0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: GetComments
+    className: GetCommentsScript
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1256,7 +1261,7 @@ ScriptsOnlyBuild:
       Hash: 50f98c3ed7a078cf23073bff936d243b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: SceneScriptMedia
+    className: MediaSceneScript
   - hash:
       serializedVersion: 2
       Hash: 87ad3705a58f19c47136728d4a6e9c47
@@ -1268,7 +1273,7 @@ ScriptsOnlyBuild:
       Hash: e04b2b491eebe774af935a1534b115c3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ProguessBar
+    className: ProgressBarScript
   - hash:
       serializedVersion: 2
       Hash: 3375c3d749f8f4cad889721b431bdc27
@@ -1286,7 +1291,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: BtnCalificacion
+    className: ScoreButtonScript
   - hash:
       serializedVersion: 2
       Hash: f55309be7cf921dab9db530ced15d662
@@ -1310,7 +1315,7 @@ ScriptsOnlyBuild:
       Hash: 1eedf65c6c169d7f25994429cb403cdf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: BrowseScene
+    className: BrowseSceneScript
   - hash:
       serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
@@ -1364,13 +1369,13 @@ ScriptsOnlyBuild:
       Hash: 7734b4ab77b2fa20c70d62d781cbbbe7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Alert
+    className: AlertScript
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: SplashScreen
+    className: SplashScreenScript
   - hash:
       serializedVersion: 2
       Hash: 40fc886df18344f8e8bf70b6effcd016
@@ -1412,7 +1417,7 @@ ScriptsOnlyBuild:
       Hash: 16d14f604b03fb1b1cba0876da9b129c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ScriptImageMenu
+    className: ImageMenuScript
   - hash:
       serializedVersion: 2
       Hash: 69cd7b88ad9c63dbe2c9b0a6cab32098
@@ -1454,7 +1459,7 @@ ScriptsOnlyBuild:
       Hash: 44d9abff613b1ec3948a47457d77d826
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Menu2ButtonsStar
+    className: Menu2ButtonsStarScript
   - hash:
       serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
@@ -1503,6 +1508,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TextConsoleSimulator
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ARScript
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1559,10 +1570,10 @@ ScriptsOnlyBuild:
     className: StandaloneInputModule
   - hash:
       serializedVersion: 2
-      Hash: b2e70bfa8967fca2d22dcd90702ace34
+      Hash: 7c8d3e2f3efa7a42007063f7a0014396
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: buttonScrip
+    className: ButtonScript
   - hash:
       serializedVersion: 2
       Hash: f7858108331b563fb41b80b729297acd
@@ -1667,7 +1678,7 @@ ScriptsOnlyBuild:
     className: TMP_TextEventCheck
   - hash:
       serializedVersion: 2
-      Hash: 266f6d81f88f191f24d5a7ef629a2b29
+      Hash: 765d066d07d8990b95bd133049362e6d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MoreOptionsScript
@@ -1676,7 +1687,7 @@ ScriptsOnlyBuild:
       Hash: 1fbc6f716dccc6a382e5249137dfe2f2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ChangePassword
+    className: ChangePasswordScript
   - hash:
       serializedVersion: 2
       Hash: c63d86309ff76943ffba9c55cee191a0
@@ -1691,16 +1702,16 @@ ScriptsOnlyBuild:
     className: TextContainer
   platform: 13
   scenePathNames:
-  - Assets/Scenes/Home/Home.unity
-  - Assets/Scenes/LoginScreen.unity
-  - Assets/Scenes/RegisterScreen.unity
-  - Assets/Scenes/Menu1.unity
-  - Assets/Scenes/Menu2.unity
-  - Assets/Scenes/Menu3.unity
-  - Assets/Scenes/Home/VideoMenu.unity
-  - Assets/Scenes/Home/MediaPrincipal.unity
-  - Assets/Scenes/Home/MediaMenu.unity
+  - Assets/Scenes/HomeScene/Home.unity
+  - Assets/Scenes/LoginRegisterScenes/LoginScreen.unity
+  - Assets/Scenes/LoginRegisterScenes/RegisterScreen.unity
+  - Assets/Scenes/MenuScenes/Menu1.unity
+  - Assets/Scenes/MenuScenes/Menu2.unity
+  - Assets/Scenes/MenuScenes/Menu3.unity
+  - Assets/Scenes/MediaScenes/VideoScreen.unity
+  - Assets/Scenes/MediaScenes/MediaPrincipal.unity
+  - Assets/Scenes/MediaScenes/MediaVideoMenuScreen.unity
   - Assets/Scenes/SplashScreen/SplashScreen2.unity
   - Assets/Scenes/SplashScreen/SplashScreen1.unity
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/ARScene/ARScene.unity
   playerPath: D:/ISI/5tosemestre/ProyectoSistemas/ARto.apk
