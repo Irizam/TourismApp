@@ -8,4 +8,6 @@ public static class ClassIdHolder
     /// Clase que captura el id del lugar turistico para luegocargar las imagenes y videos del mismo
     /// </summary>
     public static int id;
+
+    public static bool firstTime = true;
 }

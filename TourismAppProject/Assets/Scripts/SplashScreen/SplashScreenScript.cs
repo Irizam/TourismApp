@@ -18,18 +18,19 @@ public class SplashScreenScript : MonoBehaviour
         {
             StartCoroutine(ToMainMenu());
         }
+        ClassIdHolder.firstTime = false;
     }
 
     IEnumerator ToSplashTwo()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneNumber = 1;
         SceneManager.LoadScene(9);
     }
 
     IEnumerator ToMainMenu()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneNumber = 0;
         SceneManager.LoadScene(0);
     }

@@ -43,7 +43,8 @@ public class CommentScript : MonoBehaviour
         if (idClient!="0")
         {
             commentMessage.text = "";
-            Regex rgx = new Regex(@"^[a-zA-Z ]{1,60}$");
+            //Regex rgx = new Regex(@"^[a-zA-Z ]{1,60}$");
+            Regex rgx = new Regex(@"^[a-zA-Z0-9\s]*$");
 
             string comment = commentInput.text, idTouristSpot = PlayerPrefs.GetString("SpotID"); 
             if (rgx.IsMatch(comment))

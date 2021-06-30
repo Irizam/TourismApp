@@ -29,10 +29,14 @@ public class ButtonScript : MonoBehaviour
     void Start()
     {
         //Verifica que vuelve de la ventana MediaPrincipal para ubicarse en el mapa
-        if (ClassIdHolder.id != 0)
+        if (ClassIdHolder.id != 0 && imgmap != null && navegationScrip !=  null)
         {
             //Obtiene el id de la clase para dar la ubicacion correspondiente
             StartCoroutine(Place_Location(ClassIdHolder.id.ToString()));
+        }
+        if (ClassIdHolder.firstTime)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(10);
         }
     }
 
@@ -44,7 +48,8 @@ public class ButtonScript : MonoBehaviour
         string id = this.gameObject.name; // capturamos el nombre del Boton
         Debug.Log("--- " + id + " ---");
         StartCoroutine(Place_Location(id)); // enviamos el parametro al metodo que muestra el lugar turistico
-        
+
+        moreOption.Sub_Menu_Button();
         //hola, soy rodri. había un conflicto acá y no sabía con cual de estas dos líneas de código dejarle, por ende, deje los dos:
         PlayerPrefs.SetString("SpotID", id);
         ClassIdHolder.id = int.Parse(id);
@@ -73,8 +78,7 @@ public class ButtonScript : MonoBehaviour
         navegationScrip.latt = lat; // envia los parametros del lugar al sript NavegationScrip, y de esta manera captura y envia para usalor en el metodo GetPlace que te redirecciona al lugar desde la localizacion del Usuario
         navegationScrip.logg = lon; // envia los parametros del lugar al sript NavegationScrip, y de esta manera captura y envia para usalor en el metodo GetPlace que te redirecciona al lugar desde la localizacion del Usuario
 
-        moreOption.Sub_Menu_Button();
-      
+            
         StartCoroutine(Get_Map_Ubi(lat, lon, zomt)); //enviamos los datos obtenidos de la Latitud y la Longitud        
         subMenuPlaceOptions.gameObject.SetActive(true);
         buttonNategation.gameObject.SetActive(false);
