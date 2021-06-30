@@ -92,7 +92,7 @@ public class ChangePasswordScript : MonoBehaviour
             }
             else
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             }
         }
         catch (UnityException ex) { Application.Quit(); }

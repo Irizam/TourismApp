@@ -37,7 +37,7 @@ public class LoginScript : MonoBehaviour
     [Header("User Window")]
     public GameObject userWindow;
     public GameObject confirmButtonField;
-    public Button updateUserButton, logoutButton, deleteButton, goBackButton, deleteAccountButton;
+    public Button updateUserButton, logoutButton, deleteButton, goBackButton, deleteAccountButton, goChangePassButton;
     public InputField nameInput, firstSurnameInput, secondSurnameInput;
     public Canvas blackScreen;
     public Text dateOfBirthMessage, errorNameMessage, errorFirstSurnameMessage, errorSecondSurnameMessage;
@@ -64,6 +64,7 @@ public class LoginScript : MonoBehaviour
         registerButton.onClick.AddListener(Register_Button_OnClick);
         remindButton.onClick.AddListener(Remind_Button_OnClick);
         confirmButton.onClick.AddListener(Confirm_Button_OnClick);
+        goChangePassButton.onClick.AddListener(ChangePassword_Button_OnClick);
         passwordInput.inputType = InputField.InputType.Password;
 
         updateUserButton.onClick.AddListener(Update_User_OnClick);
@@ -301,6 +302,23 @@ public class LoginScript : MonoBehaviour
         PlayerPrefs.SetString("LoginToken", "");
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+    void ChangePassword_Button_OnClick()
+    {
+        try
+        {
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+                activity.Call<bool>("moveTaskToBack", true);
+            }
+            else
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(12);
+            }
+        }
+        catch (UnityException ex) { Application.Quit(); }
+    }
+    
 
     /// <summary>
     /// Este metodo muestra una alerta para eliminar usuario o no
