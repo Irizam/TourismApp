@@ -8,7 +8,9 @@ public class NavegateScript : MonoBehaviour
     //variables para trabajar con los mapas 
     private string urlMap = ""; //recibira el linck con la API del mapa
     public RawImage imgmap; //contenedor para alojar el Mapa
-    
+    public RectTransform logoApp; // logo de la app
+    public RectTransform buttonAr; // boton para entrar al AR
+
     //carialbles para el manejo de los ampas en su diferentes ejes
     public int zoom = 10;
     public double ejeY = 0;
@@ -119,5 +121,15 @@ public class NavegateScript : MonoBehaviour
         lgU = logUser;
 
         Application.OpenURL("https://www.google.com.bo/maps/dir/" + ltU + "," + lgU + "/" + lt + "," + lg + "/@-17.3826693,-66.178493,13.64z/data=!4m5!4m4!1m1!4e1!1m0!3e0?hl=es");
+    }
+
+    /// <summary>
+    /// Metodo Para regresar al Menu Unicio donde se encuentran todos los Marcadores con la ubicacion del Usiario
+    /// </summary>
+    public void menuInicio()
+    {
+        StartCoroutine("Get_Map");
+        logoApp.gameObject.SetActive(true);
+        buttonAr.gameObject.SetActive(false);
     }
 }

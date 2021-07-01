@@ -201,16 +201,21 @@ public class LoginScript : MonoBehaviour
             if(passwordInput.text!="" && passwordInput.text.Length >= 8 && passwordInput.text.Length <= 20)//validacion de la contraseña
             {
                 StartCoroutine(Update_Pswd_And_Send_Email(email, passwordInput.text));//enviar el email de confirmacion y cambiar la contraseña
+                errorPasswordMessage.text = "";
             }
             else
             {
-                errorPasswordMessage.text="contraseña invalida";
+                errorPasswordMessage.text="contraseña invalida o es menor a 8 caracteres";
             }
         }
         else
         {
             errorEmailMessage.text = "El código es incorrecto";
         }
+
+
+        
+
     }
 
     /// <summary>
@@ -388,14 +393,14 @@ public class LoginScript : MonoBehaviour
  
         //configuracion del objeto mail para el envio de correo
         MailMessage mail = new MailMessage();
-        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.From = new MailAddress("tirusmoapp@gmail.com");
         mail.To.Add(email);
         mail.Subject = "Recordar contraseña";
         mail.Body = "Introduzca el codigo " + verCod+" en el campo de Correo Electronico y su nueva contraseña en el campo de contraseña, luego presione Confirmar";
  
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
         smtp.Port = 587;
-        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.Credentials = new System.Net.NetworkCredential("tirusmoapp@gmail.com", "turismo2021") as ICredentialsByHost;
         smtp.EnableSsl = true;
  
         ServicePointManager.ServerCertificateValidationCallback =
@@ -413,14 +418,14 @@ public class LoginScript : MonoBehaviour
  
         //configuracion del objeto mail para el envio de correo
         MailMessage mail = new MailMessage();
-        mail.From = new MailAddress("TourismAppAR@gmail.com");
+        mail.From = new MailAddress("tirusmoapp@gmail.com");
         mail.To.Add(email);
         mail.Subject = "Recordar contraseña";
         mail.Body = "Su nueva contraseña es " + newPswd;
  
         SmtpClient smtp = new SmtpClient("smtp.gmail.com");
         smtp.Port = 587;
-        smtp.Credentials = new System.Net.NetworkCredential("TourismAppAR@gmail.com", "Tourism69App69AR69") as ICredentialsByHost;
+        smtp.Credentials = new System.Net.NetworkCredential("tirusmoapp@gmail.com", "turismo2021") as ICredentialsByHost;
         smtp.EnableSsl = true;
  
         ServicePointManager.ServerCertificateValidationCallback =

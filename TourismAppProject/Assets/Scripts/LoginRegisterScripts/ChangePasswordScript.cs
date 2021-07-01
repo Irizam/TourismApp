@@ -79,6 +79,9 @@ public class ChangePasswordScript : MonoBehaviour
                 else errorMessage2.text = www.text;
             }
         }
+        oldPassInput.text = "";
+        newPassInput.text = "";
+        repeatNewPassInput.text = "";
     }
 
     void Go_Back_Button_OnClick()

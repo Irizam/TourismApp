@@ -124,4 +124,6 @@ public class ButtonScript : MonoBehaviour
         yield return www;
         imgmap.texture = www.texture;       
     }
+
+    
 }

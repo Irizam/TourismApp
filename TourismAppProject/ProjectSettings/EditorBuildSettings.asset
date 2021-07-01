@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARScene/ARScene.unity
     guid: 66c7f1d7c29c2524286e857cb8e245cb
+  - enabled: 1
+    path: Assets/Scenes/LoginRegisterScenes/ChangePasswordScreen.unity
+    guid: a832825a7fa69674483893efa0d12205
   m_configObjects: {}
